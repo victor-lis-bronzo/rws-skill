@@ -1,0 +1,17 @@
+{
+  "name": "rws-marketplace",
+  "owner": {
+    "name": "RWS Community"
+  },
+  "plugins": [
+    {
+      "name": "rws",
+      "description": "Raw Sources, Wiki & Schema (RWS) - Karpathy LLM Wiki methodology for AI agents, featuring Socratic grilling and TDD orchestration.",
+      "version": "1.0.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/rws-skill/rws-skill.git"
+      }
+    }
+  ]
+}

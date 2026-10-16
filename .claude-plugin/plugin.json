@@ -1,0 +1,10 @@
+{
+  "name": "rws",
+  "version": "1.0.0",
+  "description": "Raw Sources, Wiki & Schema (RWS) - Karpathy LLM Wiki methodology for AI agents, featuring Socratic grilling and TDD orchestration.",
+  "author": {
+    "name": "RWS Community"
+  },
+  "skills": "./skills",
+  "rules": "./rules/AGENTS.md"
+}
