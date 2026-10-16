@@ -61,10 +61,10 @@ O RWS segue o padrão aberto de Agent Skills e pode ser instalado diretamente vi
 
 ```bash
 # Instalar todas as skills do repositório
-npx skills add <seu-usuario>/rws-skill
+npx skills add victor-lis-bronzo/rws-skill
 
 # Ou instalar apenas uma skill específica
-npx skills add <seu-usuario>/rws-skill --skill implement
+npx skills add victor-lis-bronzo/rws-skill --skill implement
 ```
 
 ### 2. Claude Code (Plugins & Marketplace)
@@ -72,7 +72,7 @@ Distribuído nativamente através do sistema de plugins do Claude Code:
 
 ```bash
 # 1. Adicionar o repositório como marketplace comunitário
-claude plugin marketplace add https://github.com/<seu-usuario>/rws-skill.git
+claude plugin marketplace add https://github.com/victor-lis-bronzo/rws-skill.git
 
 # 2. Instalar o plugin RWS
 claude plugin install rws@rws-marketplace
@@ -90,18 +90,18 @@ cp -r skills/rws <projeto>/.claude/skills/rws
 
 #### Via CLI do Antigravity
 ```bash
-agy plugin install https://github.com/<seu-usuario>/rws-skill.git
+agy plugin install https://github.com/victor-lis-bronzo/rws-skill.git
 ```
 
 #### Via One-Liner Remoto (Download + Registro de Slash Commands)
 ```powershell
 # Windows (PowerShell)
-irm https://raw.githubusercontent.com/<seu-usuario>/rws-skill/main/bin/install.ps1 | iex
+irm https://raw.githubusercontent.com/victor-lis-bronzo/rws-skill/main/bin/install.ps1 | iex
 ```
 
 ```bash
 # Linux / macOS (Bash)
-curl -fsSL https://raw.githubusercontent.com/<seu-usuario>/rws-skill/main/bin/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/victor-lis-bronzo/rws-skill/main/bin/install.sh | bash
 ```
 
 #### Via Instalador Local
