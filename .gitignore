@@ -19,3 +19,6 @@ Desktop.ini
 # Temporary test artifacts
 .tmp/
 tmp/
+
+# Agent local customizations
+.agents/

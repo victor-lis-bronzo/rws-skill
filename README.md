@@ -66,15 +66,28 @@ cp -r rws-skill ~/.codex/skills/rws
 E no `AGENTS.md` do projeto: *"Este projeto usa a skill RWS. Leia schema/schema.md e wiki/index.md antes de cada tarefa."*
 
 ### Antigravity
+Execute o instalador automatizado para registrar todos os slash commands (`/implement`, `/ticket-new`, `/ticket-tdd`, `/ticket-code`, `/ticket-review`, `/grill`, etc.) no menu de autocomplete da UI:
+
 ```powershell
-# por projeto
-Copy-Item -Recurse rws-skill <projeto>\.agents\skills\rws
-# global
-Copy-Item -Recurse rws-skill $HOME\.gemini\config\skills\rws
+# Windows (PowerShell)
+# Global (disponível em todos os projetos):
+powershell -ExecutionPolicy Bypass -File bin/install.ps1 global
+
+# Por projeto (específico de um repositório):
+powershell -ExecutionPolicy Bypass -File bin/install.ps1 project "<caminho-do-projeto>"
 ```
 
-> Os workflows em `workflows/*/SKILL.md` têm frontmatter próprio e podem ser descobertos como skills
-> individuais por agentes que suportam skills aninhadas; os demais seguem o mapa de comandos do `SKILL.md`.
+```bash
+# Linux / macOS (Bash)
+# Global:
+./bin/install.sh global
+
+# Por projeto:
+./bin/install.sh project "<caminho-do-projeto>"
+```
+
+> **Nota sobre Slash Commands:** Na UI do Antigravity, os comandos do menu autocomplete utilizam hífens (ex.: `/ticket-new`, `/implement`, `/grill-design`). Na conversa em texto, o modelo interpreta com total paridade tanto a sintaxe canônica com dois-pontos (`/ticket:new`, `/ticket:tdd`) quanto com hífen (`/ticket-new`, `/ticket-tdd`).
+
 
 ## Primeiros passos
 
