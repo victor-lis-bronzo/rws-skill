@@ -37,7 +37,7 @@ Detalhes completos: [core/architecture.md](./core/architecture.md).
 
 ## 3. Comandos
 
-Gramática: `/<escopo>:<ação>` — escopos `raw-source | wiki | schema`, ações `add | remove | increment`.
+Gramática: `/<escopo>:<ação>` — escopos `raw-source | wiki | schema | ticket`, ações `add | remove | increment | new | tdd | code | review`.
 
 | Comando | Workflow |
 |---|---|
@@ -46,6 +46,9 @@ Gramática: `/<escopo>:<ação>` — escopos `raw-source | wiki | schema`, açõ
 | `/setup-green-space` | [workflows/setup-green-space](./workflows/setup-green-space/SKILL.md) |
 | `/grill` (`/grill-me`) | [workflows/grill](./workflows/grill/SKILL.md) |
 | `/grill-design` | [workflows/grill-design](./workflows/grill-design/SKILL.md) |
+| `/ticket:new` · `:add` | [new](./workflows/ticket-new/SKILL.md) · [add](./workflows/ticket-add/SKILL.md) |
+| `/ticket:tdd` · `:code` · `:review` | [tdd](./workflows/ticket-tdd/SKILL.md) · [code](./workflows/ticket-code/SKILL.md) · [review](./workflows/ticket-review/SKILL.md) |
+| `/implement` | [workflows/implement](./workflows/implement/SKILL.md) — orquestrador de implementação / roadmap |
 | `/raw-source:add` · `:remove` · `:increment` | [add](./workflows/raw-source-add/SKILL.md) · [remove](./workflows/raw-source-remove/SKILL.md) · [increment](./workflows/raw-source-increment/SKILL.md) |
 | `/wiki:add` · `:remove` · `:increment` | [add](./workflows/wiki-add/SKILL.md) · [remove](./workflows/wiki-remove/SKILL.md) · [increment](./workflows/wiki-increment/SKILL.md) |
 | `/schema:add` · `:remove` · `:increment` | [add](./workflows/schema-add/SKILL.md) · [remove](./workflows/schema-remove/SKILL.md) · [increment](./workflows/schema-increment/SKILL.md) |

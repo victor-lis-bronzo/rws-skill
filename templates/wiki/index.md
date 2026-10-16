@@ -19,6 +19,9 @@ updated: AAAA-MM-DD
 
 ## UI Specs
 
+## Tasks de Implementação
+<!-- - [[slug-da-task]] — Resumo da task · vertical: <v> · status: <s\> · issue: #<id> -->
+
 ## Sínteses
 
 ## Fontes

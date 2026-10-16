@@ -15,6 +15,7 @@
 | `concept` | `wiki/concepts/` | [concept.md](../templates/wiki/concept.md) | Ideia abstrata: regra de negócio, padrão de arquitetura, fluxo |
 | `decision` | `wiki/decisions/` | [decision.md](../templates/wiki/decision.md) | Decisão tomada (ADR leve), geralmente vinda de `/grill` |
 | `ui-spec` | `wiki/ui-specs/` | [ui-ux-spec.md](../templates/wiki/ui-ux-spec.md) | Tela/fluxo visual, vinda de `/grill-design` |
+| `task` | `wiki/tasks/` | [task.md](../templates/wiki/task.md) | Plano de implementação/ajuste/fix pós-grill ou demanda direta |
 | `synthesis` | `wiki/syntheses/` | [synthesis.md](../templates/wiki/synthesis.md) | Análise, comparação, resposta valiosa de Query |
 | `source-summary` | `wiki/sources/` | [source-summary.md](../templates/wiki/source-summary.md) | Resumo de uma raw source |
 
@@ -25,10 +26,13 @@ O `schema/schema.md` do projeto pode adicionar tipos (via `/schema:add`).
 ```yaml
 ---
 title: Pagamento Recorrente
-type: concept            # ver tabela acima
-status: active           # draft | active | deprecated
+type: concept            # ver tabela acima (overview, entity, concept, decision, ui-spec, task, synthesis, source-summary)
+status: active           # draft | active | deprecated (para conhecimento) ou planned | in_progress | completed | cancelled (para tasks)
 tags: [billing, stripe]
-sources:                 # raw sources que embasam a página
+vertical: billing        # verticalidade/domínio na wiki (obrigatório em tasks)
+depends_on: []           # [ "[[task-anterior]]" ] para ordenação de roadmap (tasks)
+github_issue: 42         # número da issue sincronizada no GitHub via gh CLI (tasks)
+sources:                 # raw sources ou decisões que embasam a página
   - raw/2026-10-16-reuniao-kickoff.md
 related: ["[[assinatura]]", "[[stripe]]"]
 created: 2026-10-16

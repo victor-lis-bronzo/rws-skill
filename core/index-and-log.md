@@ -29,6 +29,9 @@ O agente **lê o index primeiro** em toda Query e **atualiza o index em toda esc
 ## UI Specs
 - [[dashboard-financeiro]] — Visão de receita com filtros facetados.
 
+## Tasks de Implementação
+- [[implementar-webhook-stripe]] — Endpoint de webhook para confirmação de pagamento. · vertical: billing · status: planned · issue: #42
+
 ## Sínteses
 - [[comparativo-filas]] — SQS vs RabbitMQ para o worker de e-mail.
 
@@ -49,6 +52,7 @@ Cabeçalho padronizado para ser parseável com ferramentas simples:
 ```
 
 Operações válidas: `setup`, `ingest`, `query`, `lint`, `grill`, `grill-design`,
+`ticket:new|add|tdd|code|review`, `implement`,
 `raw-source:add|remove|increment`, `wiki:add|remove|increment`, `schema:add|remove|increment`.
 
 ```markdown

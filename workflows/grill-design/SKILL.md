@@ -71,12 +71,18 @@ E a tabela de gravações:
 | wiki | `wiki/concepts/<feature>.md` (link para a spec) | /wiki:increment |
 | schema | `schema/design-system.md` | /schema:add (1ª vez) ou /schema:increment |
 
+## Plano de Implementação de UI (Tasks / Tickets)
+| Task | Vertical | Depende de | Prioridade | Ação |
+|---|---|---|---|---|
+| `wiki/tasks/<slug-da-tela>.md` | `ui` | - | `medium` | /ticket:new (wiki + issue) |
+
 ## Aprovação explícita (gate)
-**"Aprova a spec de UI/UX e as gravações acima? (sim / ajustar)"** — sem aprovação inequívoca, não grave nada.
+**"Aprova a spec de UI/UX, as gravações no design system e a criação das tasks (+ issues no GitHub)? (sim / ajustar)"** — sem aprovação inequívoca, não grave nada.
 
 ## Formalização (após aprovação)
 1. [/wiki:add](../wiki-add/SKILL.md) → `wiki/ui-specs/<slug>.md` (`type: ui-spec`).
 2. [/wiki:increment](../wiki-increment/SKILL.md) nas páginas de feature/entidade relacionadas.
 3. [/schema:add](../schema-add/SKILL.md) ou [/schema:increment](../schema-increment/SKILL.md) → `schema/design-system.md` (template [design-system-rules.md](../../templates/schema/design-system-rules.md)).
-4. Append em `wiki/log.md`: `## [AAAA-MM-DD] grill-design | <tela/fluxo>`.
-5. Sugerir próximos passos: protótipo, implementação, telas vizinhas sem spec.
+4. Execute [/ticket:new](../ticket-new/SKILL.md) para cada task de UI planejada (componentes, telas, interações), com as labels `vertical:ui` (ou vertical da feature) e `status:planned`.
+5. Append em `wiki/log.md`: `## [AAAA-MM-DD] grill-design | <tela/fluxo>` com as páginas e tasks criadas.
+6. Sugerir próximos passos: `/implement <task-de-ui>`, protótipo, telas vizinhas sem spec.

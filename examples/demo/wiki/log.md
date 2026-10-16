@@ -18,3 +18,6 @@ type: log
 ## [2026-10-16] grill-design | Painel do assinante
 - Criado: [[painel-do-assinante]]
 - Schema: schema/design-system.md
+
+## [2026-10-16] ticket:new | Implementar Cobrança Recorrente via Stripe
+- Criado: [[implementar-cobranca-stripe]] (issue #1, vertical: billing)

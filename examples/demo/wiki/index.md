@@ -23,6 +23,9 @@ updated: 2026-10-16
 ## UI Specs
 - [[painel-do-assinante]] — Próxima entrega, trocar café, pausar assinatura. · status: draft
 
+## Tasks de Implementação
+- [[implementar-cobranca-stripe]] — Cobrança recorrente no dia 5 via Stripe API. · vertical: billing · status: planned · issue: #1
+
 ## Sínteses
 
 ## Fontes

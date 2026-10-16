@@ -19,15 +19,18 @@ Detalhes: [core/architecture.md](./core/architecture.md).
 
 ## Comandos
 
-Gramática: `/<escopo>:<ação>` — escopos `raw-source · wiki · schema` × ações `add · remove · increment`.
+Gramática: `/<escopo>:<ação>` — escopos `raw-source · wiki · schema · ticket` × ações `add · remove · increment · new · tdd · code · review`.
 
 | Comando | O que faz |
 |---|---|
 | `/rws:summary` | Sumário para o agente decidir qual skill usar |
 | `/setup-brown-space` | Audita uma codebase existente, mostra o que entendeu e semeia raw/wiki/schema |
 | `/setup-green-space` | Define e inicializa a arquitetura RWS limpa em um projeto novo do zero |
-| `/grill` · `/grill-me` | Brainstorm socrático até entender o que você quer → grava com `/wiki:add` + `/schema:add` |
-| `/grill-design` | Brainstorm de UI/UX com patterns nomeados e apps de referência → `wiki/ui-specs/` + design system |
+| `/grill` · `/grill-me` | Brainstorm socrático até entender o que você quer → grava na wiki, schema e gera tasks |
+| `/grill-design` | Brainstorm de UI/UX com patterns nomeados e apps de referência → `wiki/ui-specs/` + tasks de UI |
+| `/ticket:new` · `:add` | Criar task na wiki + issue no GitHub (`:new`) ou exportar task existente para issue (`:add`) |
+| `/ticket:tdd` · `:code` · `:review` | Ciclo TDD: testes falhando (`:tdd`), código verde (`:code`), lint/commit convencional/fechamento (`:review`) |
+| `/implement` | Orquestrador de implementação guiado por ticket, verticalidade ou análise autônoma de roadmap |
 | `/raw-source:add` · `:remove` · `:increment` | Ingerir, arquivar ou versionar fontes |
 | `/wiki:add` · `:remove` · `:increment` | Criar, remover ou enriquecer páginas |
 | `/schema:add` · `:remove` · `:increment` | Criar, remover ou evoluir regras |

@@ -194,7 +194,7 @@ for (const [slug, page] of pages) {
 for (const [slug, page] of pages) {
   if (SPECIAL.has(slug)) continue;
   if (fs.existsSync(indexPath) && !indexLinks.has(slug)) add('error', page.file, `Página ausente do index.md: [[${slug}]]`);
-  if (!EXEMPT_ORPHAN.has(slug) && inbound.get(slug).size === 0)
+  if (!EXEMPT_ORPHAN.has(slug) && page.fm?.type !== 'task' && inbound.get(slug).size === 0)
     add('warning', page.file, `Página órfã: nenhuma outra página linka [[${slug}]]`);
 }
 

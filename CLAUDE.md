@@ -16,6 +16,9 @@ A instrução canônica está em [SKILL.md](./SKILL.md): **leia-a integralmente 
 | `/setup-green-space` | `workflows/setup-green-space/SKILL.md` |
 | `/grill`, `/grill-me` | `workflows/grill/SKILL.md` |
 | `/grill-design` | `workflows/grill-design/SKILL.md` |
+| `/ticket:new` · `:add` | `workflows/ticket-<ação>/SKILL.md` |
+| `/ticket:tdd` · `:code` · `:review` | `workflows/ticket-<ação>/SKILL.md` |
+| `/implement` | `workflows/implement/SKILL.md` |
 | `/raw-source:add` · `:remove` · `:increment` | `workflows/raw-source-<ação>/SKILL.md` |
 | `/wiki:add` · `:remove` · `:increment` | `workflows/wiki-<ação>/SKILL.md` |
 | `/schema:add` · `:remove` · `:increment` | `workflows/schema-<ação>/SKILL.md` |
