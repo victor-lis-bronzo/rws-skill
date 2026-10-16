@@ -1,0 +1,21 @@
+# Dependency directories
+node_modules/
+
+# OS metadata
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Logs and databases
+*.log
+*.sqlite
+*.db
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Temporary test artifacts
+.tmp/
+tmp/
