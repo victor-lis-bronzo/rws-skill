@@ -42,16 +42,16 @@ Gramática: `/<escopo>:<ação>` — escopos `raw-source | wiki | schema | ticke
 | Comando | Workflow |
 |---|---|
 | `/rws:summary` | [core/agent-router.md](./core/agent-router.md) — qual skill usar em cada situação |
-| `/setup-brown-space` | [workflows/setup-brown-space](./workflows/setup-brown-space/SKILL.md) |
-| `/setup-green-space` | [workflows/setup-green-space](./workflows/setup-green-space/SKILL.md) |
-| `/grill` (`/grill-me`) | [workflows/grill](./workflows/grill/SKILL.md) |
-| `/grill-design` | [workflows/grill-design](./workflows/grill-design/SKILL.md) |
-| `/ticket:new` · `:add` | [new](./workflows/ticket-new/SKILL.md) · [add](./workflows/ticket-add/SKILL.md) |
-| `/ticket:tdd` · `:code` · `:review` | [tdd](./workflows/ticket-tdd/SKILL.md) · [code](./workflows/ticket-code/SKILL.md) · [review](./workflows/ticket-review/SKILL.md) |
-| `/implement` | [workflows/implement](./workflows/implement/SKILL.md) — orquestrador de implementação / roadmap |
-| `/raw-source:add` · `:remove` · `:increment` | [add](./workflows/raw-source-add/SKILL.md) · [remove](./workflows/raw-source-remove/SKILL.md) · [increment](./workflows/raw-source-increment/SKILL.md) |
-| `/wiki:add` · `:remove` · `:increment` | [add](./workflows/wiki-add/SKILL.md) · [remove](./workflows/wiki-remove/SKILL.md) · [increment](./workflows/wiki-increment/SKILL.md) |
-| `/schema:add` · `:remove` · `:increment` | [add](./workflows/schema-add/SKILL.md) · [remove](./workflows/schema-remove/SKILL.md) · [increment](./workflows/schema-increment/SKILL.md) |
+| `/setup-brown-space` | [skills/setup-brown-space](./skills/setup-brown-space/SKILL.md) |
+| `/setup-green-space` | [skills/setup-green-space](./skills/setup-green-space/SKILL.md) |
+| `/grill` (`/grill-me`) | [skills/grill](./skills/grill/SKILL.md) |
+| `/grill-design` | [skills/grill-design](./skills/grill-design/SKILL.md) |
+| `/ticket:new` · `:add` | [new](./skills/ticket-new/SKILL.md) · [add](./skills/ticket-add/SKILL.md) |
+| `/ticket:tdd` · `:code` · `:review` | [tdd](./skills/ticket-tdd/SKILL.md) · [code](./skills/ticket-code/SKILL.md) · [review](./skills/ticket-review/SKILL.md) |
+| `/implement` | [skills/implement](./skills/implement/SKILL.md) — orquestrador de implementação / roadmap |
+| `/raw-source:add` · `:remove` · `:increment` | [add](./skills/raw-source-add/SKILL.md) · [remove](./skills/raw-source-remove/SKILL.md) · [increment](./skills/raw-source-increment/SKILL.md) |
+| `/wiki:add` · `:remove` · `:increment` | [add](./skills/wiki-add/SKILL.md) · [remove](./skills/wiki-remove/SKILL.md) · [increment](./skills/wiki-increment/SKILL.md) |
+| `/schema:add` · `:remove` · `:increment` | [add](./skills/schema-add/SKILL.md) · [remove](./skills/schema-remove/SKILL.md) · [increment](./skills/schema-increment/SKILL.md) |
 | `/rws:lint` | `node <skill>/bin/lint-rws.js <raiz-do-projeto>` + [core/lifecycle.md](./core/lifecycle.md#lint) |
 
 ## 4. Referências

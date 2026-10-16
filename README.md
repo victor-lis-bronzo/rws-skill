@@ -40,40 +40,79 @@ Gramática: `/<escopo>:<ação>` — escopos `raw-source · wiki · schema · ti
 
 ```
 rws-skill/
-├── SKILL.md            # instrução geral (sempre lida)
-├── CLAUDE.md · AGENTS.md · GEMINI.md   # adaptadores por agente
+├── .claude-plugin/     # manifestos de plugin e marketplace para Claude Code
+├── plugin.json         # manifesto de plugin nativo para Antigravity
+├── rules/              # regras compartilhadas para agentes (AGENTS.md)
+├── skills/             # catálogo padronizado de skills (skills.sh, agy, Claude Code)
+├── workflows/          # workflows individuais
 ├── core/               # arquitetura, router, convenções, index/log, ciclo de vida, catálogo de UI
-├── workflows/          # um SKILL.md por comando
 ├── templates/          # modelos de páginas raw/wiki/schema
-├── bin/lint-rws.js     # linter sem dependências (Node ≥ 18)
+├── bin/
+│   ├── install.ps1     # instalador automatizado PowerShell (Windows)
+│   ├── install.sh      # instalador automatizado Bash (Linux / macOS)
+│   └── lint-rws.js     # linter de saúde sem dependências (Node ≥ 18)
 └── examples/demo/      # projeto de exemplo já no formato RWS
 ```
 
 ## Instalação
 
-### Claude Code
+### 1. `skills.sh` (Vercel Labs / Agent Skills)
+O RWS segue o padrão aberto de Agent Skills e pode ser instalado diretamente via `npx`:
+
 ```bash
-# global
-cp -r rws-skill ~/.claude/skills/rws
-# ou por projeto
-cp -r rws-skill <projeto>/.claude/skills/rws
+# Instalar todas as skills do repositório
+npx skills add <seu-usuario>/rws-skill
+
+# Ou instalar apenas uma skill específica
+npx skills add <seu-usuario>/rws-skill --skill implement
 ```
 
-### Codex
-```bash
-cp -r rws-skill ~/.codex/skills/rws
-```
-E no `AGENTS.md` do projeto: *"Este projeto usa a skill RWS. Leia schema/schema.md e wiki/index.md antes de cada tarefa."*
+### 2. Claude Code (Plugins & Marketplace)
+Distribuído nativamente através do sistema de plugins do Claude Code:
 
-### Antigravity
-Execute o instalador automatizado para registrar todos os slash commands (`/implement`, `/ticket-new`, `/ticket-tdd`, `/ticket-code`, `/ticket-review`, `/grill`, etc.) no menu de autocomplete da UI:
+```bash
+# 1. Adicionar o repositório como marketplace comunitário
+claude plugin marketplace add https://github.com/<seu-usuario>/rws-skill.git
+
+# 2. Instalar o plugin RWS
+claude plugin install rws@rws-marketplace
+```
+
+*Instalação manual legada:*
+```bash
+# Global
+cp -r skills/rws ~/.claude/skills/rws
+# Ou no projeto local
+cp -r skills/rws <projeto>/.claude/skills/rws
+```
+
+### 3. Antigravity (`agy`)
+
+#### Via CLI do Antigravity
+```bash
+agy plugin install https://github.com/<seu-usuario>/rws-skill.git
+```
+
+#### Via One-Liner Remoto (Download + Registro de Slash Commands)
+```powershell
+# Windows (PowerShell)
+irm https://raw.githubusercontent.com/<seu-usuario>/rws-skill/main/bin/install.ps1 | iex
+```
+
+```bash
+# Linux / macOS (Bash)
+curl -fsSL https://raw.githubusercontent.com/<seu-usuario>/rws-skill/main/bin/install.sh | bash
+```
+
+#### Via Instalador Local
+Se você já clonou o repositório localmente:
 
 ```powershell
 # Windows (PowerShell)
-# Global (disponível em todos os projetos):
+# Global (~/.gemini/config/skills):
 powershell -ExecutionPolicy Bypass -File bin/install.ps1 global
 
-# Por projeto (específico de um repositório):
+# Por projeto (<projeto>/.agents/skills):
 powershell -ExecutionPolicy Bypass -File bin/install.ps1 project "<caminho-do-projeto>"
 ```
 
@@ -87,6 +126,12 @@ powershell -ExecutionPolicy Bypass -File bin/install.ps1 project "<caminho-do-pr
 ```
 
 > **Nota sobre Slash Commands:** Na UI do Antigravity, os comandos do menu autocomplete utilizam hífens (ex.: `/ticket-new`, `/implement`, `/grill-design`). Na conversa em texto, o modelo interpreta com total paridade tanto a sintaxe canônica com dois-pontos (`/ticket:new`, `/ticket:tdd`) quanto com hífen (`/ticket-new`, `/ticket-tdd`).
+
+### 4. Codex
+```bash
+cp -r skills/rws ~/.codex/skills/rws
+```
+E no `AGENTS.md` do projeto: *"Este projeto usa a skill RWS. Leia schema/schema.md e wiki/index.md antes de cada tarefa."*
 
 
 ## Primeiros passos

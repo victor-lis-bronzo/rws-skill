@@ -21,15 +21,15 @@ como invocação e siga o arquivo correspondente:
 | Comando | Procedimento |
 |---|---|
 | `rws:summary` | `core/agent-router.md` |
-| `setup-brown-space` | `workflows/setup-brown-space/SKILL.md` |
-| `setup-green-space` | `workflows/setup-green-space/SKILL.md` |
-| `grill` / `grill-me` | `workflows/grill/SKILL.md` |
-| `grill-design` | `workflows/grill-design/SKILL.md` |
-| `ticket:{new,add,tdd,code,review}` | `workflows/ticket-{ação}/SKILL.md` |
-| `implement` | `workflows/implement/SKILL.md` |
-| `raw-source:{add,remove,increment}` | `workflows/raw-source-{ação}/SKILL.md` |
-| `wiki:{add,remove,increment}` | `workflows/wiki-{ação}/SKILL.md` |
-| `schema:{add,remove,increment}` | `workflows/schema-{ação}/SKILL.md` |
+| `setup-brown-space` | `skills/setup-brown-space/SKILL.md` |
+| `setup-green-space` | `skills/setup-green-space/SKILL.md` |
+| `grill` / `grill-me` | `skills/grill/SKILL.md` |
+| `grill-design` | `skills/grill-design/SKILL.md` |
+| `ticket:{new,add,tdd,code,review}` | `skills/ticket-{ação}/SKILL.md` |
+| `implement` | `skills/implement/SKILL.md` |
+| `raw-source:{add,remove,increment}` | `skills/raw-source-{ação}/SKILL.md` |
+| `wiki:{add,remove,increment}` | `skills/wiki-{ação}/SKILL.md` |
+| `schema:{add,remove,increment}` | `skills/schema-{ação}/SKILL.md` |
 | `rws:lint` | `node bin/lint-rws.js <raiz-do-projeto>` |
 
 ## Instalação no Codex

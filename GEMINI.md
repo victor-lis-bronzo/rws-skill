@@ -4,7 +4,7 @@ Este repositório é a skill **RWS (Raw Sources, Wiki & Schema)**.
 
 - Skill mestra: [SKILL.md](./SKILL.md) (`name: rws`) — leia antes de agir.
 - Router de decisão: [core/agent-router.md](./core/agent-router.md).
-- Cada workflow em `workflows/<nome>/` é instalado como skill individual em `.agents/skills/<nome>/` (projeto) ou `~/.gemini/config/skills/<nome>/` (global) via `bin/install.ps1`, registrando os slash commands correspondentes (`/implement`, `/ticket-new`, `/ticket-tdd`, `/ticket-code`, `/ticket-review`, `/grill`, `/grill-design`, etc.) no menu da UI.
+- Cada workflow em `skills/<nome>/` é instalado como skill individual em `.agents/skills/<nome>/` (projeto) ou `~/.gemini/config/skills/<nome>/` (global) via `bin/install.ps1`, registrando os slash commands correspondentes (`/implement`, `/ticket-new`, `/ticket-tdd`, `/ticket-code`, `/ticket-review`, `/grill`, `/grill-design`, etc.) no menu da UI. Também pode ser instalado como plugin nativo via `agy plugin install <repo>` ou manifesto `plugin.json`.
 
 ## Regras
 1. `raw/` imutável · `wiki/` mantida pelo agente (sempre atualizar `index.md` + `log.md`) · `schema/` só com aprovação.
