@@ -37,13 +37,20 @@ if [ -d "${REPO_ROOT}/bin" ]; then
     cp -r "${REPO_ROOT}/bin" "${SKILLS_DIR}/rws/"
 fi
 
-# Instala cada workflow como skill individual
-for dir in "${REPO_ROOT}/workflows"/*; do
+# Instala cada skill modular
+SOURCE_SKILLS_DIR="${REPO_ROOT}/skills"
+if [ ! -d "$SOURCE_SKILLS_DIR" ]; then
+    SOURCE_SKILLS_DIR="${REPO_ROOT}/workflows"
+fi
+
+for dir in "${SOURCE_SKILLS_DIR}"/*; do
     if [ -d "$dir" ]; then
         name="$(basename "$dir")"
-        mkdir -p "${SKILLS_DIR}/${name}"
-        cp -r "$dir/"* "${SKILLS_DIR}/${name}/"
-        echo "    [+] /${name}"
+        if [ "$name" != "rws" ]; then
+            mkdir -p "${SKILLS_DIR}/${name}"
+            cp -r "$dir/"* "${SKILLS_DIR}/${name}/"
+            echo "    [+] /${name}"
+        fi
     fi
 done
 

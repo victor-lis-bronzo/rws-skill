@@ -59,17 +59,23 @@ if (Test-Path (Join-Path $RepoRoot "bin")) {
     Copy-Item -Path (Join-Path $RepoRoot "bin") -Destination $RwsSkillDir -Recurse -Force
 }
 
-# 4. Instala cada workflow como skill individual
-$WorkflowsDir = Join-Path $RepoRoot "workflows"
+# 4. Instala cada skill modular
+$SourceSkillsDir = if (Test-Path (Join-Path $RepoRoot "skills")) {
+    Join-Path $RepoRoot "skills"
+} else {
+    Join-Path $RepoRoot "workflows"
+}
 $InstalledCount = 1
 
-Get-ChildItem -Directory $WorkflowsDir | ForEach-Object {
-    $WorkflowName = $_.Name
-    $TargetWorkflowDir = Join-Path $SkillsDir $WorkflowName
-    New-Item -ItemType Directory -Path $TargetWorkflowDir -Force | Out-Null
-    Copy-Item -Path (Join-Path $_.FullName "*") -Destination $TargetWorkflowDir -Recurse -Force
-    $InstalledCount++
-    Write-Host "    [+] /$WorkflowName" -ForegroundColor Green
+Get-ChildItem -Directory $SourceSkillsDir | ForEach-Object {
+    $SkillName = $_.Name
+    if ($SkillName -ne "rws") {
+        $TargetSkillDir = Join-Path $SkillsDir $SkillName
+        New-Item -ItemType Directory -Path $TargetSkillDir -Force | Out-Null
+        Copy-Item -Path (Join-Path $_.FullName "*") -Destination $TargetSkillDir -Recurse -Force
+        $InstalledCount++
+        Write-Host "    [+] /$SkillName" -ForegroundColor Green
+    }
 }
 
 Write-Host "`n==> Sucesso! $InstalledCount skills instaladas em $SkillsDir" -ForegroundColor Cyan
