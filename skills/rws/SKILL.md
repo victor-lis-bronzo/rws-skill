@@ -7,6 +7,7 @@ description: >-
   auditar uma codebase, registrar conhecimento, planejar features (grill), planejar
   UI/UX (grill-design) ou executar comandos no formato /<escopo>:<ação>
   (raw-source, wiki, schema × add, remove, increment).
+argument-hint: "<comando> [args], ex.: grill | grill-design | ticket:new | wiki:add | implement | rws:lint"
 ---
 
 # RWS — Raw Sources, Wiki & Schema
@@ -37,32 +38,34 @@ Detalhes completos: [core/architecture.md](./core/architecture.md).
 
 ## 3. Comandos
 
+**Como invocar:** `/rws <comando> [args]`, por exemplo `/rws grill`, `/rws ticket:new`, `/rws wiki:add pagamentos` (no plugin do Claude Code: `/rws:rws grill`). A forma `/ticket-new` (com hífen) e a menção textual também valem. Os argumentos recebidos após `/rws` são o comando: abra o workflow correspondente da tabela abaixo. Sem argumentos, rode o protocolo da seção 2 e ofereça o menu do [router](./core/agent-router.md).
+
 Gramática: `/<escopo>:<ação>` — escopos `raw-source | wiki | schema | ticket`, ações `add | remove | increment | new | tdd | code | review`.
 
 | Comando | Workflow |
 |---|---|
-| `/rws:summary` | [core/agent-router.md](../../core/agent-router.md) — qual skill usar em cada situação |
-| `/setup-brown-space` | [setup-brown-space](../setup-brown-space/SKILL.md) |
-| `/setup-green-space` | [setup-green-space](../setup-green-space/SKILL.md) |
-| `/grill` (`/grill-me`) | [grill](../grill/SKILL.md) |
-| `/grill-design` | [grill-design](../grill-design/SKILL.md) |
-| `/ticket:new` · `:add` | [new](../ticket-new/SKILL.md) · [add](../ticket-add/SKILL.md) |
-| `/ticket:tdd` · `:code` · `:review` | [tdd](../ticket-tdd/SKILL.md) · [code](../ticket-code/SKILL.md) · [review](../ticket-review/SKILL.md) |
-| `/implement` | [implement](../implement/SKILL.md) — orquestrador de implementação / roadmap |
-| `/raw-source:add` · `:remove` · `:increment` | [add](../raw-source-add/SKILL.md) · [remove](../raw-source-remove/SKILL.md) · [increment](../raw-source-increment/SKILL.md) |
-| `/wiki:add` · `:remove` · `:increment` | [add](../wiki-add/SKILL.md) · [remove](../wiki-remove/SKILL.md) · [increment](../wiki-increment/SKILL.md) |
-| `/schema:add` · `:remove` · `:increment` | [add](../schema-add/SKILL.md) · [remove](../schema-remove/SKILL.md) · [increment](../schema-increment/SKILL.md) |
-| `/rws:lint` | `node <skill>/bin/lint-rws.js <raiz-do-projeto>` + [core/lifecycle.md](../../core/lifecycle.md#lint) |
+| `/rws:summary` | [core/agent-router.md](./core/agent-router.md) — qual skill usar em cada situação |
+| `/setup-brown-space` | [setup-brown-space](./references/setup-brown-space.md) |
+| `/setup-green-space` | [setup-green-space](./references/setup-green-space.md) |
+| `/grill` (`/grill-me`) | [grill](./references/grill.md) |
+| `/grill-design` | [grill-design](./references/grill-design.md) |
+| `/ticket:new` · `:add` | [new](./references/ticket-new.md) · [add](./references/ticket-add.md) |
+| `/ticket:tdd` · `:code` · `:review` | [tdd](./references/ticket-tdd.md) · [code](./references/ticket-code.md) · [review](./references/ticket-review.md) |
+| `/implement` | [implement](./references/implement.md) — orquestrador de implementação / roadmap |
+| `/raw-source:add` · `:remove` · `:increment` | [add](./references/raw-source-add.md) · [remove](./references/raw-source-remove.md) · [increment](./references/raw-source-increment.md) |
+| `/wiki:add` · `:remove` · `:increment` | [add](./references/wiki-add.md) · [remove](./references/wiki-remove.md) · [increment](./references/wiki-increment.md) |
+| `/schema:add` · `:remove` · `:increment` | [add](./references/schema-add.md) · [remove](./references/schema-remove.md) · [increment](./references/schema-increment.md) |
+| `/rws:lint` | `node <skill>/bin/lint-rws.js <raiz-do-projeto>` + [core/lifecycle.md](./core/lifecycle.md#lint) |
 
 ## 4. Referências
 
-- [core/architecture.md](../../core/architecture.md) — as três camadas e por que funcionam
-- [core/agent-router.md](../../core/agent-router.md) — sumário de decisão
-- [core/conventions.md](../../core/conventions.md) — nomes, frontmatter, wikilinks
-- [core/index-and-log.md](../../core/index-and-log.md) — formato de `index.md` e `log.md`
-- [core/lifecycle.md](../../core/lifecycle.md) — Ingest, Query, Lint, Compounding
-- [core/ui-patterns-catalog.md](../../core/ui-patterns-catalog.md) — patterns de UI × apps de referência
-- [templates/](../../templates/) — modelos de página
+- [core/architecture.md](./core/architecture.md) — as três camadas e por que funcionam
+- [core/agent-router.md](./core/agent-router.md) — sumário de decisão
+- [core/conventions.md](./core/conventions.md) — nomes, frontmatter, wikilinks
+- [core/index-and-log.md](./core/index-and-log.md) — formato de `index.md` e `log.md`
+- [core/lifecycle.md](./core/lifecycle.md) — Ingest, Query, Lint, Compounding
+- [core/ui-patterns-catalog.md](./core/ui-patterns-catalog.md) — patterns de UI × apps de referência
+- [templates/](./templates/) — modelos de página
 
 ## 5. Proibições
 

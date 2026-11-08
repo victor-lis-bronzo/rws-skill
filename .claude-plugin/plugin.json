@@ -1,10 +1,10 @@
 {
   "name": "rws",
   "version": "1.0.0",
-  "description": "Raw Sources, Wiki & Schema (RWS) - Karpathy LLM Wiki methodology for AI agents, featuring Socratic grilling and TDD orchestration.",
-  "author": {
-    "name": "RWS Community"
-  },
-  "skills": "./skills",
-  "rules": "./rules/AGENTS.md"
+  "description": "Raw Sources, Wiki & Schema (RWS): maintain a persistent LLM-curated project wiki (Karpathy LLM Wiki), with Socratic grilling and TDD orchestration.",
+  "author": { "name": "victor-lis-bronzo" },
+  "homepage": "https://github.com/victor-lis-bronzo/rws-skill",
+  "repository": "https://github.com/victor-lis-bronzo/rws-skill",
+  "license": "MIT",
+  "keywords": ["wiki", "knowledge-base", "karpathy", "tdd", "skill"]
 }

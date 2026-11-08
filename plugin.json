@@ -1,7 +1,5 @@
 {
   "name": "rws",
   "version": "1.0.0",
-  "description": "Raw Sources, Wiki & Schema (RWS) - Karpathy LLM Wiki methodology for Antigravity, featuring Socratic grilling and TDD orchestration.",
-  "skills": "./skills",
-  "rules": "./rules/AGENTS.md"
+  "description": "Raw Sources, Wiki & Schema (RWS): maintain a persistent LLM-curated project wiki (Karpathy LLM Wiki), with Socratic grilling and TDD orchestration."
 }
