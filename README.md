@@ -101,7 +101,7 @@ Grammar: `/<scope>:<action>` with scopes `raw-source · wiki · schema · ticket
 | `/raw-source:add` · `:remove` · `:increment` | Ingest, archive or version sources |
 | `/wiki:add` · `:remove` · `:increment` | Create, remove or enrich pages |
 | `/schema:add` · `:remove` · `:increment` | Create, remove or evolve rules |
-| `/rws:lint` | Health check (links, orphans, index, log, frontmatter) |
+| `/rws lint` | Health check (links, orphans, index, log, frontmatter) |
 
 ### Getting started
 
