@@ -1,157 +1,153 @@
-# RWS Skill — Raw Sources, Wiki & Schema
+# RWS — Raw Sources, Wiki & Schema
 
-Skill replicável para agentes de IA (**Claude Code**, **Codex**, **Antigravity**) que transforma o agente
-em mantenedor disciplinado de uma base de conhecimento persistente do seu projeto, seguindo o padrão
-[LLM Wiki de Andrej Karpathy](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f).
+> Turn your agent into the disciplined maintainer of a persistent project knowledge base.
 
-> Em vez de redescobrir o projeto a cada conversa (RAG), o agente **compila** o conhecimento
-> numa wiki interligada e a mantém atual. Cada fonte e cada pergunta deixam a base mais rica.
+`rws` is an agent skill for **Claude Code**, **Google Antigravity (`agy`)** and **Codex**, based on Andrej Karpathy's [LLM Wiki](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) pattern. Instead of rediscovering the project in every conversation (RAG), the agent **compiles** knowledge into an interlinked wiki and keeps it current.
 
-## As três camadas
+The skill content (workflows, templates, wiki output) is written in Brazilian Portuguese.
 
-| Camada | Pasta | Quem escreve | Natureza |
+## The three layers
+
+| Layer | Folder | Written by | Nature |
 |---|---|---|---|
-| Raw Sources | `raw/` | Você (curadoria) | Imutável, fonte da verdade |
-| Wiki | `wiki/` | O agente | Sínteses, entidades, decisões, specs, com `index.md` e `log.md` |
-| Schema | `schema/` | Você + agente | Convenções e workflows que governam o agente |
+| Raw Sources | `raw/` | You (curation) | Immutable source of truth |
+| Wiki | `wiki/` | The agent | Syntheses, entities, decisions, specs, with `index.md` and `log.md` |
+| Schema | `schema/` | You + agent | Conventions and workflows that govern the agent |
 
-Detalhes: [core/architecture.md](./core/architecture.md).
+Details: [skills/rws/core/architecture.md](skills/rws/core/architecture.md).
 
-## Comandos
+## Install
 
-Gramática: `/<escopo>:<ação>` — escopos `raw-source · wiki · schema · ticket` × ações `add · remove · increment · new · tdd · code · review`.
+Pick one.
 
-| Comando | O que faz |
+### 1. `npx skills` (Claude Code + Antigravity in one go)
+
+```bash
+npx skills add victor-lis-bronzo/rws-skill --skill rws -g -a claude-code -a antigravity-cli -y
+```
+
+Drop `-g` to install into the current project instead. Add `-a antigravity` for the Antigravity IDE, or `--copy` to copy files rather than symlink.
+
+### 2. Claude Code plugin
+
+```bash
+claude plugin marketplace add victor-lis-bronzo/rws-skill
+claude plugin install rws@rws-skill
+```
+
+Plugin skills are namespaced: invoke as `/rws:rws`.
+
+### 3. Antigravity plugin
+
+```bash
+git clone https://github.com/victor-lis-bronzo/rws-skill
+agy plugin install ./rws-skill
+```
+
+Run `agy plugin list` to see the exact name.
+
+### 4. Install script
+
+```bash
+# macOS / Linux / Git Bash
+git clone https://github.com/victor-lis-bronzo/rws-skill; cd rws-skill
+./scripts/install.sh                     # global, Claude + Antigravity
+./scripts/install.sh --claude
+./scripts/install.sh --agy
+./scripts/install.sh --project ~/code/my-app
+./scripts/install.sh --link              # symlink: `git pull` updates the skill
+./scripts/install.sh --uninstall
+```
+
+```powershell
+# Windows (PowerShell)
+./scripts/install.ps1                    # global, Claude + Antigravity
+./scripts/install.ps1 -Claude
+./scripts/install.ps1 -Agy
+./scripts/install.ps1 -Project C:\path\to\repo
+./scripts/install.ps1 -Link
+./scripts/install.ps1 -Uninstall
+```
+
+### Manual
+
+Copy `skills/rws/` (the whole folder, it is self-contained) to:
+
+| Where | Claude Code | Antigravity | Codex |
+|---|---|---|---|
+| Global | `~/.claude/skills/rws` | `~/.gemini/config/skills/rws` | `~/.codex/skills/rws` |
+| Project | `.claude/skills/rws` | `.agents/skills/rws` | `.agents/skills/rws` |
+
+For Codex, also add to the project's `AGENTS.md`: *"This project uses the RWS skill. Read schema/schema.md and wiki/index.md before every task."*
+
+Manual, script and `npx skills` installs invoke as plain `/rws`.
+
+## Commands
+
+The whole skill is one entry point (`rws`). Individual commands are **not** separate skills, so they do not show up in the autocomplete menu: type them as text and the skill routes to the right workflow in `skills/rws/references/`. Both `/ticket:new` and `/ticket-new` are understood.
+
+Grammar: `/<scope>:<action>` with scopes `raw-source · wiki · schema · ticket` and actions `add · remove · increment · new · tdd · code · review`.
+
+| Command | What it does |
 |---|---|
-| `/rws:summary` | Sumário para o agente decidir qual skill usar |
-| `/setup-brown-space` | Audita uma codebase existente, mostra o que entendeu e semeia raw/wiki/schema |
-| `/setup-green-space` | Define e inicializa a arquitetura RWS limpa em um projeto novo do zero |
-| `/grill` · `/grill-me` | Brainstorm socrático até entender o que você quer → grava na wiki, schema e gera tasks |
-| `/grill-design` | Brainstorm de UI/UX com patterns nomeados e apps de referência → `wiki/ui-specs/` + tasks de UI |
-| `/ticket:new` · `:add` | Criar task na wiki + issue no GitHub (`:new`) ou exportar task existente para issue (`:add`) |
-| `/ticket:tdd` · `:code` · `:review` | Ciclo TDD: testes falhando (`:tdd`), código verde (`:code`), lint/commit convencional/fechamento (`:review`) |
-| `/implement` | Orquestrador de implementação guiado por ticket, verticalidade ou análise autônoma de roadmap |
-| `/raw-source:add` · `:remove` · `:increment` | Ingerir, arquivar ou versionar fontes |
-| `/wiki:add` · `:remove` · `:increment` | Criar, remover ou enriquecer páginas |
-| `/schema:add` · `:remove` · `:increment` | Criar, remover ou evoluir regras |
-| `/rws:lint` | Checagem de saúde (links, órfãs, index, log, frontmatter) |
+| `/rws:summary` | Summary so the agent can decide which workflow to use |
+| `/setup-brown-space` | Audits an existing codebase, shows what it understood, seeds raw/wiki/schema |
+| `/setup-green-space` | Defines and initializes a clean RWS architecture in a new project |
+| `/grill` · `/grill-me` | Socratic brainstorm until it understands what you want → writes wiki, schema and tasks |
+| `/grill-design` | UI/UX brainstorm with named patterns and reference apps → `wiki/ui-specs/` + UI tasks |
+| `/ticket:new` · `:add` | Create a wiki task + GitHub issue, or export an existing task to an issue |
+| `/ticket:tdd` · `:code` · `:review` | TDD cycle: failing tests, green code, lint/conventional commit/closure |
+| `/implement` | Implementation orchestrator driven by ticket, vertical or autonomous roadmap analysis |
+| `/raw-source:add` · `:remove` · `:increment` | Ingest, archive or version sources |
+| `/wiki:add` · `:remove` · `:increment` | Create, remove or enrich pages |
+| `/schema:add` · `:remove` · `:increment` | Create, remove or evolve rules |
+| `/rws:lint` | Health check (links, orphans, index, log, frontmatter) |
 
-## Estrutura do repositório
+### Getting started
+
+- **New project:** `/setup-green-space`, then `/grill` to shape the requirements.
+- **Existing project:** `/setup-brown-space` to audit the codebase and seed the base.
+- **New material arrived:** `/raw-source:add`
+- **About to design screens:** `/grill-design`
+
+## Repository layout
 
 ```
 rws-skill/
-├── .claude-plugin/     # manifestos de plugin e marketplace para Claude Code
-├── plugin.json         # manifesto de plugin nativo para Antigravity
-├── rules/              # regras compartilhadas para agentes (AGENTS.md)
-├── skills/             # catálogo padronizado de skills (skills.sh, agy, Claude Code)
-├── workflows/          # workflows individuais
-├── core/               # arquitetura, router, convenções, index/log, ciclo de vida, catálogo de UI
-├── templates/          # modelos de páginas raw/wiki/schema
-├── bin/
-│   ├── install.ps1     # instalador automatizado PowerShell (Windows)
-│   ├── install.sh      # instalador automatizado Bash (Linux / macOS)
-│   └── lint-rws.js     # linter de saúde sem dependências (Node ≥ 18)
-└── examples/demo/      # projeto de exemplo já no formato RWS
+├── .claude-plugin/      # Claude Code plugin + marketplace manifests
+├── plugin.json          # Antigravity plugin manifest
+├── scripts/             # install.sh, install.ps1, check-links.js
+├── skills/rws/          # the skill: self-contained, this is what gets installed
+│   ├── SKILL.md
+│   ├── core/            # architecture, router, conventions, lifecycle, UI patterns
+│   ├── templates/       # raw / wiki / schema page templates
+│   ├── references/      # one file per workflow
+│   └── bin/lint-rws.js  # dependency-free linter (Node >= 18)
+├── examples/demo/       # sample project already in RWS format
+└── AGENTS.md · CLAUDE.md · GEMINI.md   # thin agent adapters
 ```
-
-## Instalação
-
-### 1. `skills.sh` (Vercel Labs / Agent Skills)
-O RWS segue o padrão aberto de Agent Skills e pode ser instalado diretamente via `npx`:
-
-```bash
-# Instalar todas as skills do repositório
-npx skills add victor-lis-bronzo/rws-skill
-
-# Ou instalar apenas uma skill específica
-npx skills add victor-lis-bronzo/rws-skill --skill implement
-```
-
-### 2. Claude Code (Plugins & Marketplace)
-Distribuído nativamente através do sistema de plugins do Claude Code:
-
-```bash
-# 1. Adicionar o repositório como marketplace comunitário
-claude plugin marketplace add https://github.com/victor-lis-bronzo/rws-skill.git
-
-# 2. Instalar o plugin RWS
-claude plugin install rws@rws-marketplace
-```
-
-*Instalação manual legada:*
-```bash
-# Global
-cp -r skills/rws ~/.claude/skills/rws
-# Ou no projeto local
-cp -r skills/rws <projeto>/.claude/skills/rws
-```
-
-### 3. Antigravity (`agy`)
-
-#### Via CLI do Antigravity
-```bash
-agy plugin install https://github.com/victor-lis-bronzo/rws-skill.git
-```
-
-#### Via One-Liner Remoto (Download + Registro de Slash Commands)
-```powershell
-# Windows (PowerShell)
-irm https://raw.githubusercontent.com/victor-lis-bronzo/rws-skill/main/bin/install.ps1 | iex
-```
-
-```bash
-# Linux / macOS (Bash)
-curl -fsSL https://raw.githubusercontent.com/victor-lis-bronzo/rws-skill/main/bin/install.sh | bash
-```
-
-#### Via Instalador Local
-Se você já clonou o repositório localmente:
-
-```powershell
-# Windows (PowerShell)
-# Global (~/.gemini/config/skills):
-powershell -ExecutionPolicy Bypass -File bin/install.ps1 global
-
-# Por projeto (<projeto>/.agents/skills):
-powershell -ExecutionPolicy Bypass -File bin/install.ps1 project "<caminho-do-projeto>"
-```
-
-```bash
-# Linux / macOS (Bash)
-# Global:
-./bin/install.sh global
-
-# Por projeto:
-./bin/install.sh project "<caminho-do-projeto>"
-```
-
-> **Nota sobre Slash Commands:** Na UI do Antigravity, os comandos do menu autocomplete utilizam hífens (ex.: `/ticket-new`, `/implement`, `/grill-design`). Na conversa em texto, o modelo interpreta com total paridade tanto a sintaxe canônica com dois-pontos (`/ticket:new`, `/ticket:tdd`) quanto com hífen (`/ticket-new`, `/ticket-tdd`).
-
-### 4. Codex
-```bash
-cp -r skills/rws ~/.codex/skills/rws
-```
-E no `AGENTS.md` do projeto: *"Este projeto usa a skill RWS. Leia schema/schema.md e wiki/index.md antes de cada tarefa."*
-
-
-## Primeiros passos
-
-- **Projeto novo:** `/setup-green-space` para criar a infraestrutura RWS e `/grill` para conceber os requisitos.
-- **Projeto existente:** `/setup-brown-space` para auditar a codebase e semear a base.
-- **Chegou material novo:** `/raw-source:add`
-- **Vai desenhar telas:** `/grill-design`
 
 ## Lint
 
 ```bash
-node bin/lint-rws.js <raiz-do-projeto>          # relatório
-node bin/lint-rws.js <raiz-do-projeto> --json   # saída para máquinas
-node bin/lint-rws.js examples/demo              # testar com o exemplo
+node skills/rws/bin/lint-rws.js <project-root>          # report
+node skills/rws/bin/lint-rws.js <project-root> --json   # machine-readable
+node skills/rws/bin/lint-rws.js examples/demo           # try it on the example
+node scripts/check-links.js                             # validate the skill's relative links
 ```
 
-Código de saída `1` se houver erros (útil em CI).
+Exit code `1` on errors (useful in CI). An installed skill has the linter at `<skills-dir>/rws/bin/lint-rws.js`.
 
-## Ferramentas recomendadas
-- **Obsidian** para navegar a wiki (graph view, wikilinks, Dataview sobre o frontmatter).
-- **Obsidian Web Clipper** para trazer artigos da web para `raw/`.
-- **git** — a base é só markdown: histórico e branches de graça.
+## Recommended tools
+
+- **Obsidian** to browse the wiki (graph view, wikilinks, Dataview over frontmatter).
+- **Obsidian Web Clipper** to bring web articles into `raw/`.
+- **git**: the base is plain markdown, so history and branches come for free.
+
+## Releasing
+
+The version lives in both `plugin.json` (repo root, for agy) and `.claude-plugin/plugin.json` (Claude). Bump both.
+
+## License
+
+MIT

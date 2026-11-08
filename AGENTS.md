@@ -4,8 +4,8 @@ Este repositório é a skill **RWS (Raw Sources, Wiki & Schema)**, baseada no pa
 [LLM Wiki de Andrej Karpathy](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f).
 
 ## Instrução principal
-Antes de qualquer tarefa, leia [SKILL.md](./SKILL.md) e siga o *Protocolo obrigatório*.
-Em dúvida sobre qual procedimento usar, consulte [core/agent-router.md](./core/agent-router.md).
+Antes de qualquer tarefa, leia [skills/rws/SKILL.md](./skills/rws/SKILL.md) e siga o *Protocolo obrigatório*.
+Em dúvida sobre qual procedimento usar, consulte [skills/rws/core/agent-router.md](./skills/rws/core/agent-router.md).
 
 ## Regras invioláveis
 1. `raw/` é imutável — leia e cite, nunca edite.
@@ -20,18 +20,18 @@ como invocação e siga o arquivo correspondente:
 
 | Comando | Procedimento |
 |---|---|
-| `rws:summary` | `core/agent-router.md` |
-| `setup-brown-space` | `skills/setup-brown-space/SKILL.md` |
-| `setup-green-space` | `skills/setup-green-space/SKILL.md` |
-| `grill` / `grill-me` | `skills/grill/SKILL.md` |
-| `grill-design` | `skills/grill-design/SKILL.md` |
-| `ticket:{new,add,tdd,code,review}` | `skills/ticket-{ação}/SKILL.md` |
-| `implement` | `skills/implement/SKILL.md` |
-| `raw-source:{add,remove,increment}` | `skills/raw-source-{ação}/SKILL.md` |
-| `wiki:{add,remove,increment}` | `skills/wiki-{ação}/SKILL.md` |
-| `schema:{add,remove,increment}` | `skills/schema-{ação}/SKILL.md` |
-| `rws:lint` | `node bin/lint-rws.js <raiz-do-projeto>` |
+| `rws:summary` | `skills/rws/core/agent-router.md` |
+| `setup-brown-space` | `skills/rws/references/setup-brown-space.md` |
+| `setup-green-space` | `skills/rws/references/setup-green-space.md` |
+| `grill` / `grill-me` | `skills/rws/references/grill.md` |
+| `grill-design` | `skills/rws/references/grill-design.md` |
+| `ticket:{new,add,tdd,code,review}` | `skills/rws/references/ticket-<ação>.md` |
+| `implement` | `skills/rws/references/implement.md` |
+| `raw-source:{add,remove,increment}` | `skills/rws/references/raw-source-<ação>.md` |
+| `wiki:{add,remove,increment}` | `skills/rws/references/wiki-<ação>.md` |
+| `schema:{add,remove,increment}` | `skills/rws/references/schema-<ação>.md` |
+| `rws:lint` | `node skills/rws/bin/lint-rws.js <raiz-do-projeto>` |
 
 ## Instalação no Codex
-Copie esta pasta para `~/.codex/skills/rws/` (ou `.agents/skills/rws/` no projeto) e, no `AGENTS.md`
+Copie `skills/rws/` para `~/.codex/skills/rws/` (ou `.agents/skills/rws/` no projeto) e, no `AGENTS.md`
 do projeto alvo, adicione: *"Este projeto usa a skill RWS. Leia schema/schema.md e wiki/index.md antes de cada tarefa."*
