@@ -80,17 +80,17 @@ Copy `skills/rws/` (the whole folder, it is self-contained) to:
 
 For Codex, also add to the project's `AGENTS.md`: *"This project uses the RWS skill. Read schema/schema.md and wiki/index.md before every task."*
 
-Manual, script and `npx skills` installs invoke as plain `/rws`.
+Manual, script and `npx skills` installs invoke as plain `/rws <command>`.
 
 ## Commands
 
-The whole skill is one entry point (`rws`). Individual commands are **not** separate skills, so they do not show up in the autocomplete menu: type them as text and the skill routes to the right workflow in `skills/rws/references/`. Both `/ticket:new` and `/ticket-new` are understood.
+Everything ships as **one skill** (`rws`), so there is a single install. Run workflows as arguments: `/rws grill`, `/rws ticket:new`, `/rws wiki:add payments` (Claude Code plugin: `/rws:rws grill`). Workflows live in `skills/rws/references/`, and the skill routes to the right one. Plain-text mentions such as "run ticket-new" work too. Individual commands do not appear as separate entries in the autocomplete menu.
 
 Grammar: `/<scope>:<action>` with scopes `raw-source · wiki · schema · ticket` and actions `add · remove · increment · new · tdd · code · review`.
 
 | Command | What it does |
 |---|---|
-| `/rws:summary` | Summary so the agent can decide which workflow to use |
+| `/rws summary` | Summary so the agent can decide which workflow to use |
 | `/setup-brown-space` | Audits an existing codebase, shows what it understood, seeds raw/wiki/schema |
 | `/setup-green-space` | Defines and initializes a clean RWS architecture in a new project |
 | `/grill` · `/grill-me` | Socratic brainstorm until it understands what you want → writes wiki, schema and tasks |

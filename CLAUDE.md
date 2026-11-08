@@ -3,6 +3,8 @@
 Este repositório é a skill **RWS (Raw Sources, Wiki & Schema)**.
 A instrução canônica está em [skills/rws/SKILL.md](./skills/rws/SKILL.md): **leia-a integralmente antes de agir**.
 
+Invocação: `/rws <comando>` (ex.: `/rws grill`); no plugin do Claude Code, `/rws:rws <comando>`. Os comandos abaixo valem como argumento ou menção textual.
+
 ## Como o Claude Code deve operar
 1. No início da sessão, siga o *Protocolo obrigatório* de [skills/rws/SKILL.md](./skills/rws/SKILL.md#2-protocolo-obrigatório-toda-sessão).
 2. Em dúvida sobre o que fazer → [skills/rws/core/agent-router.md](./skills/rws/core/agent-router.md).

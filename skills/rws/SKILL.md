@@ -7,6 +7,7 @@ description: >-
   auditar uma codebase, registrar conhecimento, planejar features (grill), planejar
   UI/UX (grill-design) ou executar comandos no formato /<escopo>:<ação>
   (raw-source, wiki, schema × add, remove, increment).
+argument-hint: "<comando> [args], ex.: grill | grill-design | ticket:new | wiki:add | implement | rws:lint"
 ---
 
 # RWS — Raw Sources, Wiki & Schema
@@ -36,6 +37,8 @@ Detalhes completos: [core/architecture.md](./core/architecture.md).
 6. **Boas respostas viram páginas**: análises, comparações e sínteses relevantes são oferecidas para `/wiki:add`.
 
 ## 3. Comandos
+
+**Como invocar:** `/rws <comando> [args]`, por exemplo `/rws grill`, `/rws ticket:new`, `/rws wiki:add pagamentos` (no plugin do Claude Code: `/rws:rws grill`). A forma `/ticket-new` (com hífen) e a menção textual também valem. Os argumentos recebidos após `/rws` são o comando: abra o workflow correspondente da tabela abaixo. Sem argumentos, rode o protocolo da seção 2 e ofereça o menu do [router](./core/agent-router.md).
 
 Gramática: `/<escopo>:<ação>` — escopos `raw-source | wiki | schema | ticket`, ações `add | remove | increment | new | tdd | code | review`.
 

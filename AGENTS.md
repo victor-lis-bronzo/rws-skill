@@ -3,6 +3,8 @@
 Este repositório é a skill **RWS (Raw Sources, Wiki & Schema)**, baseada no padrão
 [LLM Wiki de Andrej Karpathy](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f).
 
+Invocação: `/rws <comando>` (ex.: `/rws grill`); no plugin do Claude Code, `/rws:rws <comando>`. Os comandos abaixo valem como argumento ou menção textual.
+
 ## Instrução principal
 Antes de qualquer tarefa, leia [skills/rws/SKILL.md](./skills/rws/SKILL.md) e siga o *Protocolo obrigatório*.
 Em dúvida sobre qual procedimento usar, consulte [skills/rws/core/agent-router.md](./skills/rws/core/agent-router.md).
