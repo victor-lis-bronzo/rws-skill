@@ -1,17 +1,12 @@
 {
-  "name": "rws-marketplace",
-  "owner": {
-    "name": "RWS Community"
-  },
+  "name": "rws-skill",
+  "description": "Skill that turns the agent into the maintainer of a persistent project knowledge base (raw/, wiki/, schema/).",
+  "owner": { "name": "victor-lis-bronzo" },
   "plugins": [
     {
       "name": "rws",
-      "description": "Raw Sources, Wiki & Schema (RWS) - Karpathy LLM Wiki methodology for AI agents, featuring Socratic grilling and TDD orchestration.",
-      "version": "1.0.0",
-      "source": {
-        "type": "git",
-        "url": "https://github.com/victor-lis-bronzo/rws-skill.git"
-      }
+      "source": "./",
+      "description": "Raw Sources, Wiki & Schema (RWS): maintain a persistent LLM-curated project wiki, with Socratic grilling and TDD orchestration."
     }
   ]
 }
