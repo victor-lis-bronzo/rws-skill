@@ -13,7 +13,7 @@
    - Fontes e decisões de origem (`sources` / `related`): links para decisões (`wiki/decisions/`) ou conceitos (`wiki/concepts/`).
 
 2. **Criar o arquivo na Wiki**:
-   - Criar `wiki/tasks/<slug>.md` a partir do template [task.md](../../templates/wiki/task.md).
+   - Criar `wiki/tasks/<slug>.md` a partir do template [task.md](../templates/wiki/task.md).
    - Preencher frontmatter inicial com `status: planned`.
    - Detalhar critérios de aceite em checklist acionável, contratos esperados, casos de borda e arquivos impactados previstos.
 

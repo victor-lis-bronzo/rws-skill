@@ -35,4 +35,4 @@
      `- Testes criados para [[<slug>]] (Fase RED confirmada). Status alterado para in_progress.`
 
 6. **Próximo passo sugerido**:
-   - Executar [/ticket:code](../ticket-code/SKILL.md) para construir a implementação e alcançar a fase GREEN.
+   - Executar [/ticket:code](./ticket-code.md) para construir a implementação e alcançar a fase GREEN.

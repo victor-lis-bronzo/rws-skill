@@ -68,9 +68,9 @@ Peça ao usuário para **corrigir, completar e aprovar**. Responda às perguntas
 
 ## Fase 3 — Semeadura (após aprovação)
 1. Criar estrutura: `raw/`, `raw/_archive/`, `wiki/{entities,concepts,decisions,ui-specs,syntheses,sources}/`, `schema/`.
-2. `raw/AAAA-MM-DD-codebase-audit.md` — snapshot factual da Fase 1 (com frontmatter de [raw-source-meta](../../templates/raw/raw-source-meta.md)). Docs pré-existentes relevantes podem ser referenciados como raw (sem mover os originais).
-3. `schema/schema.md` a partir de [schema-rules.md](../../templates/schema/schema-rules.md), preenchido com convenções observadas e aprovadas.
-4. `wiki/overview.md`, páginas de entidades/conceitos aprovadas (via procedimento de [/wiki:add](../wiki-add/SKILL.md)).
+2. `raw/AAAA-MM-DD-codebase-audit.md` — snapshot factual da Fase 1 (com frontmatter de [raw-source-meta](../templates/raw/raw-source-meta.md)). Docs pré-existentes relevantes podem ser referenciados como raw (sem mover os originais).
+3. `schema/schema.md` a partir de [schema-rules.md](../templates/schema/schema-rules.md), preenchido com convenções observadas e aprovadas.
+4. `wiki/overview.md`, páginas de entidades/conceitos aprovadas (via procedimento de [/wiki:add](./wiki-add.md)).
 5. `wiki/index.md` e `wiki/log.md` a partir dos templates; primeira entrada de log: `## [AAAA-MM-DD] setup | Auditoria inicial da codebase`.
 6. Criar/atualizar o arquivo de agente do projeto (`CLAUDE.md` / `AGENTS.md` / `GEMINI.md`, conforme o usuário usa) com o bloco:
    ```markdown

@@ -6,7 +6,7 @@ apoiado em patterns consolidados e em produtos reais, e registrar isso de forma 
 ## Preparação (silenciosa)
 1. Ler `wiki/index.md`, `wiki/overview.md`, specs relacionadas em `wiki/ui-specs/` e `schema/design-system.md` (se existir).
 2. Inspecionar a UI existente no código (biblioteca de componentes, tokens, Tailwind config, telas parecidas).
-3. Ler o [catálogo de patterns](../../core/ui-patterns-catalog.md).
+3. Ler o [catálogo de patterns](../core/ui-patterns-catalog.md).
 4. Se a feature não tem `/grill` prévio e as regras de negócio são incertas, sugerir rodar `/grill` antes.
 
 ## Regras de condução
@@ -47,7 +47,7 @@ apoiado em patterns consolidados e em produtos reais, e registrar isso de forma 
 | 12 | **Onboarding e ativação** | Primeiro uso? Dados de exemplo? | Checklist, template gallery, sample data |
 
 ## Síntese
-Apresente a spec preenchendo o template [ui-ux-spec.md](../../templates/wiki/ui-ux-spec.md), incluindo:
+Apresente a spec preenchendo o template [ui-ux-spec.md](../templates/wiki/ui-ux-spec.md), incluindo:
 - tabela **Patterns adotados** (pattern → onde → referência → motivo);
 - tabela **Referências** (app → o que copiar → o que evitar);
 - wireframes ASCII das telas principais;
@@ -71,9 +71,9 @@ E a tabela de gravações:
 **"Aprova a spec de UI/UX, as gravações no design system e a criação das tasks (+ issues no GitHub)? (sim / ajustar)"** — sem aprovação inequívoca, não grave nada.
 
 ## Formalização (após aprovação)
-1. [/wiki:add](../wiki-add/SKILL.md) → `wiki/ui-specs/<slug>.md` (`type: ui-spec`).
-2. [/wiki:increment](../wiki-increment/SKILL.md) nas páginas de feature/entidade relacionadas.
-3. [/schema:add](../schema-add/SKILL.md) ou [/schema:increment](../schema-increment/SKILL.md) → `schema/design-system.md` (template [design-system-rules.md](../../templates/schema/design-system-rules.md)).
-4. Execute [/ticket:new](../ticket-new/SKILL.md) para cada task de UI planejada (componentes, telas, interações), com as labels `vertical:ui` (ou vertical da feature) e `status:planned`.
+1. [/wiki:add](./wiki-add.md) → `wiki/ui-specs/<slug>.md` (`type: ui-spec`).
+2. [/wiki:increment](./wiki-increment.md) nas páginas de feature/entidade relacionadas.
+3. [/schema:add](./schema-add.md) ou [/schema:increment](./schema-increment.md) → `schema/design-system.md` (template [design-system-rules.md](../templates/schema/design-system-rules.md)).
+4. Execute [/ticket:new](./ticket-new.md) para cada task de UI planejada (componentes, telas, interações), com as labels `vertical:ui` (ou vertical da feature) e `status:planned`.
 5. Append em `wiki/log.md`: `## [AAAA-MM-DD] grill-design | <tela/fluxo>` com as páginas e tasks criadas.
 6. Sugerir próximos passos: `/implement <task-de-ui>`, protótipo, telas vizinhas sem spec.

@@ -2,7 +2,7 @@
 
 ## Passos
 1. **Checar existência**: buscar no `wiki/index.md` e por nome/sinônimos em `wiki/`. Se existe → `/wiki:increment`.
-2. **Escolher o tipo** e o template ([conventions.md](../../core/conventions.md#tipos-de-página-da-wiki)):
+2. **Escolher o tipo** e o template ([conventions.md](../core/conventions.md#tipos-de-página-da-wiki)):
    `entity`, `concept`, `decision`, `ui-spec`, `synthesis`, `source-summary` (ou tipos extras do `schema/schema.md`).
 3. **Criar** `wiki/<pasta-do-tipo>/<slug>.md` com frontmatter completo (`title`, `type`, `status`, `tags`, `sources`, `related`, `created`, `updated`).
 4. **Escrever o conteúdo**:

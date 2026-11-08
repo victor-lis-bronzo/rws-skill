@@ -65,10 +65,10 @@ Só aceite como aprovação respostas inequívocas ("sim", "aprovado", "1", "pod
 Sem aprovação → **não grave nada**; continue ajustando.
 
 ## Formalização (após aprovação)
-1. Execute [/wiki:add](../wiki-add/SKILL.md) para cada página nova de conceito/decisão (decisão usa [decision.md](../../templates/wiki/decision.md)).
-2. Execute [/wiki:increment](../wiki-increment/SKILL.md) para páginas existentes afetadas.
-3. Execute [/schema:add](../schema-add/SKILL.md) para cada regra/convenção nova (já aprovada no gate).
-4. Execute [/ticket:new](../ticket-new/SKILL.md) para cada task do plano de implementação: cria o `.md` em `wiki/tasks/` com `status: planned` e abre a issue no GitHub com as labels `vertical:<nome>` e `status:planned`.
+1. Execute [/wiki:add](./wiki-add.md) para cada página nova de conceito/decisão (decisão usa [decision.md](../templates/wiki/decision.md)).
+2. Execute [/wiki:increment](./wiki-increment.md) para páginas existentes afetadas.
+3. Execute [/schema:add](./schema-add.md) para cada regra/convenção nova (já aprovada no gate).
+4. Execute [/ticket:new](./ticket-new.md) para cada task do plano de implementação: cria o `.md` em `wiki/tasks/` com `status: planned` e abre a issue no GitHub com as labels `vertical:<nome>` e `status:planned`.
 5. Opcional: salvar a transcrição resumida do grill como `raw/AAAA-MM-DD-grill-<slug>.md` (as respostas do usuário são fonte primária).
 6. Append em `wiki/log.md`: `## [AAAA-MM-DD] grill | <tema>` listando os arquivos tocados e tickets criados.
 7. Sugerir próximo passo: `/implement vertical:<nome>` (ou `/implement <task>`), `/grill-design`, `/rws:lint`.

@@ -4,7 +4,7 @@
 1. Ler a página inteira **antes** de editar.
 2. Classificar a mudança:
    - **Acréscimo** → nova seção/parágrafo/linha de tabela no lugar lógico (não apenas no final).
-   - **Correção** → reescrever o trecho; se contradiz fonte anterior, usar o bloco de contradição de [conventions.md](../../core/conventions.md#contradições) em vez de apagar silenciosamente.
+   - **Correção** → reescrever o trecho; se contradiz fonte anterior, usar o bloco de contradição de [conventions.md](../core/conventions.md#contradições) em vez de apagar silenciosamente.
    - **Estado** → atualizar `status` (ex.: decisão implementada, feature entregue).
    - **Conexão** → adicionar wikilinks e `related:`.
 3. Atualizar frontmatter: `updated:` para hoje; adicionar novas fontes em `sources:`.

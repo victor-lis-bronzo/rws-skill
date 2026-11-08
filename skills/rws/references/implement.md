@@ -48,23 +48,23 @@ flowchart LR
     B --> C["/ticket:review\n(Refactor + Commit + Sync)"]
 ```
 
-1. **Fase RED — [/ticket:tdd](../ticket-tdd/SKILL.md)**:
+1. **Fase RED — [/ticket:tdd](./ticket-tdd.md)**:
    - Altera status para `in_progress` (na wiki e issue GitHub).
    - Escreve os testes unitários/integrados cobrindo critérios de aceite e casos de borda.
    - Roda a suíte de testes e valida que os novos testes falham pelo motivo correto.
 
-2. **Fase GREEN — [/ticket:code](../ticket-code/SKILL.md)**:
+2. **Fase GREEN — [/ticket:code](./ticket-code.md)**:
    - Implementa a lógica no código de produção respeitando o `schema/schema.md`.
    - Roda a suíte iterativamente até atingir **100% de testes verdes**.
    - Assegura que nenhum teste preexistente sofreu regressão.
 
-3. **Fase REFACTOR & SYNC — [/ticket:review](../ticket-review/SKILL.md)**:
+3. **Fase REFACTOR & SYNC — [/ticket:review](./ticket-review.md)**:
    - Roda linters e verificadores estáticos do projeto.
    - Refatora duplicações e simplifica a implementação mantendo os testes verdes.
    - Cria o commit estritamente convencional:
      `git commit -m "<tipo>(<vertical>): <descrição> (#<issue>)"`
    - Atualiza `wiki/tasks/<slug>.md` para `status: completed`.
-   - Atualiza entidades afetadas com [/wiki:increment](../wiki-increment/SKILL.md).
+   - Atualiza entidades afetadas com [/wiki:increment](./wiki-increment.md).
    - Fecha a issue no GitHub com comentário e label `status:done`.
    - Registra o encerramento em `wiki/log.md`.
 

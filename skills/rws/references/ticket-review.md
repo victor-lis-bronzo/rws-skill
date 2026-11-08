@@ -27,7 +27,7 @@
      `status: completed`
      `updated: AAAA-MM-DD`
    - Marcar todos os critérios de aceite concluídos na task (`- [x] ...`).
-   - Se a implementação alterou o comportamento real de entidades ou conceitos, executar [/wiki:increment](../wiki-increment/SKILL.md) nas páginas correspondentes (ex.: adicionar endpoint em `wiki/entities/api-gateway.md`).
+   - Se a implementação alterou o comportamento real de entidades ou conceitos, executar [/wiki:increment](./wiki-increment.md) nas páginas correspondentes (ex.: adicionar endpoint em `wiki/entities/api-gateway.md`).
    - Atualizar a linha correspondente em `wiki/index.md` marcando `status: completed`.
 
 4. **Fechar a Issue no GitHub**:
@@ -43,4 +43,4 @@
      `- Task [[<slug>]] concluída. Commit convencional gerado, issue #<id> fechada e wiki sincronizada.`
 
 6. **Próximo passo sugerido**:
-   - Se houver outras tasks na vertical ou roadmap, sugerir [/implement](../implement/SKILL.md) para a próxima. Caso contrário, rodar `/rws:lint`.
+   - Se houver outras tasks na vertical ou roadmap, sugerir [/implement](./implement.md) para a próxima. Caso contrário, rodar `/rws:lint`.

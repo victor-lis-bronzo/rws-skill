@@ -5,14 +5,14 @@
 ## Passos
 1. **Checar duplicidade**: buscar no `wiki/index.md` (seção Fontes) e em `raw/`. Se já existe algo equivalente → oferecer `/raw-source:increment`.
 2. **Gravar a fonte** em `raw/AAAA-MM-DD-<slug>.<ext>`:
-   - Texto/markdown: preservar conteúdo **literal**; adicionar no topo o frontmatter de [raw-source-meta.md](../../templates/raw/raw-source-meta.md).
+   - Texto/markdown: preservar conteúdo **literal**; adicionar no topo o frontmatter de [raw-source-meta.md](../templates/raw/raw-source-meta.md).
    - URL: salvar o conteúdo convertido para markdown (não apenas o link) + `origin_url`.
    - Binário (PDF, imagem): copiar o arquivo e criar `raw/AAAA-MM-DD-<slug>.meta.md` ao lado.
    - Imagens referenciadas: baixar para `raw/assets/` quando possível.
 3. **A partir daqui o arquivo é imutável.**
-4. **Ingest** conforme [lifecycle.md](../../core/lifecycle.md#ingest):
+4. **Ingest** conforme [lifecycle.md](../core/lifecycle.md#ingest):
    - discutir takeaways com o usuário (exceto modo batch);
-   - criar `wiki/sources/src-<slug>.md` com [source-summary.md](../../templates/wiki/source-summary.md);
+   - criar `wiki/sources/src-<slug>.md` com [source-summary.md](../templates/wiki/source-summary.md);
    - `/wiki:add` / `/wiki:increment` nas páginas afetadas;
    - sinalizar contradições.
 5. Atualizar `wiki/index.md` (seção Fontes + páginas novas).

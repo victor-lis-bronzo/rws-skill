@@ -28,4 +28,4 @@
      `- Código de produção implementado para [[<slug>]]. Todos os testes passando (GREEN).`
 
 6. **Próximo passo sugerido**:
-   - Executar [/ticket:review](../ticket-review/SKILL.md) para refatoração, linters, conventional commit e fechamento do ciclo.
+   - Executar [/ticket:review](./ticket-review.md) para refatoração, linters, conventional commit e fechamento do ciclo.
