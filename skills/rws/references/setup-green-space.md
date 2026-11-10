@@ -147,6 +147,16 @@ Este projeto é governado pela arquitetura **RWS (Raw Sources, Wiki & Schema)**.
 
 ---
 
+## Fase 4.1 — Camada de Negócio (Opcional)
+Perguntar: *"Deseja criar a seção de regras de negócio (`wiki/business/`) desde já?"* (Recomendado se o projeto nasce de regras, contratos, regimentos ou processos de uma área de negócio.)
+Se sim:
+1. Criar `wiki/business/` com as subpastas `actors/`, `processes/`, `rules/`, `requirements/` e `policies/`.
+2. Criar `wiki/business/catalogo.md` e `wiki/business/glossario.md` a partir de `templates/wiki/business/catalogo.md` e `templates/wiki/business/glossario.md`.
+3. Criar `schema/business-rules.md` a partir de `templates/schema/business-rules.md` (linkado a partir de `schema/schema.md`).
+4. Adicionar a seção `## Negócio` em `wiki/index.md` (com `[[catalogo]]` e `[[glossario]]`) e incluir os arquivos criados na entrada de setup do `wiki/log.md`.
+
+---
+
 ## Fase 5 — Validação e Próximos Passos
 1. Executar o linter interno:
    ```bash
@@ -157,3 +167,4 @@ Este projeto é governado pela arquitetura **RWS (Raw Sources, Wiki & Schema)**.
    - **Opção 1 (Recomendada para novas ideias/funcionalidades)**: Executar `/grill` para entrevistar sobre o domínio, arquitetura e primeiras entidades.
    - **Opção 2 (Se já houver briefings/atas/specs prontas)**: Executar `/raw-source:add` para colar ou anexar as primeiras fontes.
    - **Opção 3 (Se o foco inicial for interface)**: Executar `/grill-design` para conceber fluxos visuais e design tokens.
+   - **Opção 4 (Se o usuário quer começar pelas regras de negócio)**: Executar `/grill-business` para levantar atores, glossário, processos, regras e requisitos em linguagem de negócio, antes de qualquer decisão técnica.

@@ -21,3 +21,9 @@ type: log
 
 ## [2026-10-16] ticket:new | Implementar Cobrança Recorrente via Stripe
 - Criado: [[implementar-cobranca-stripe]] (issue #1, vertical: billing)
+
+## [2026-11-10] grill-business | Cobrança mensal da assinatura
+- Fonte: raw/2026-10-16-reuniao-kickoff.md
+- Criado: [[catalogo]], [[glossario]], [[assinante]], [[cobranca-mensal]], [[br-001-cobranca-no-dia-5]], [[br-002-novas-tentativas-de-cobranca]], [[req-001-cobranca-automatica-da-mensalidade]]
+- Atualizado: [[implementar-cobranca-stripe]] (implements: BR-001, BR-002, REQ-001)
+- Pergunta em aberto: destino da assinatura após a 3ª nova tentativa recusada

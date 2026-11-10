@@ -7,7 +7,7 @@ ramo da árvore de decisão, e transformar o resultado em conhecimento persisten
 1. **Uma pergunta por vez.** Nunca despeje um questionário.
 2. **Toda pergunta traz sua recomendação** e o porquê (ex.: *"Recomendo X porque o módulo Y já faz Z"*).
    Ofereça 2-4 opções quando fizer sentido (use a ferramenta de pergunta múltipla escolha se o agente tiver).
-3. **Se a resposta está na base ou no código, não pergunte** — leia `wiki/`, `schema/`, `raw/` e o código, e apenas confirme.
+3. **Se a resposta está na base ou no código, não pergunte** — leia `wiki/` (inclusive `wiki/business/`), `schema/`, `raw/` e o código, e apenas confirme.
 4. **Resolva dependências em ordem**: decisões que bloqueiam outras vêm primeiro.
 5. Mantenha visível um **mapa de decisões** (resolvidas ✅ / pendentes ⏳) a cada ~5 perguntas.
 6. Desafie premissas com educação: aponte contradições com a wiki, riscos e alternativas mais simples.
@@ -21,7 +21,7 @@ ramo da árvore de decisão, e transformar o resultado em conhecimento persisten
 | **Escopo** | O que está dentro/fora do MVP? Qual o menor incremento útil? |
 | **Atores e permissões** | Quem usa? Quem administra? Quem não pode ver? |
 | **Domínio e dados** | Quais entidades? Relacionamentos? Ciclo de vida/estados? Fonte da verdade? |
-| **Regras de negócio** | Invariantes? Casos de borda? Limites, prazos, cálculos? |
+| **Regras de negócio** | Invariantes? Casos de borda? Limites, prazos, cálculos? Regras já existentes em `wiki/business/` são **entrada** (não reperguntar). Se as regras estiverem incertas ou extensas → sugerir `/grill-business` antes |
 | **Fluxos** | Caminho feliz? Falhas? Concorrência? Idempotência? |
 | **Integrações** | Sistemas externos? Contratos? O que acontece se caírem? |
 | **Não-funcionais** | Volume, latência, segurança, LGPD, auditoria, custo |
@@ -57,6 +57,8 @@ Ao final, apresente:
 | Task | Vertical | Depende de | Prioridade | Ação |
 |---|---|---|---|---|
 | `wiki/tasks/<slug>.md` | `<vertical>` | - | `high` | /ticket:new (wiki + issue) |
+
+<!-- Tasks que materializam regras/requisitos de wiki/business/ levam `implements: [BR-012, REQ-004]` no frontmatter. -->
 ```
 
 ## Aprovação explícita (gate)
@@ -68,7 +70,7 @@ Sem aprovação → **não grave nada**; continue ajustando.
 1. Execute [/wiki:add](./wiki-add.md) para cada página nova de conceito/decisão (decisão usa [decision.md](../templates/wiki/decision.md)).
 2. Execute [/wiki:increment](./wiki-increment.md) para páginas existentes afetadas.
 3. Execute [/schema:add](./schema-add.md) para cada regra/convenção nova (já aprovada no gate).
-4. Execute [/ticket:new](./ticket-new.md) para cada task do plano de implementação: cria o `.md` em `wiki/tasks/` com `status: planned` e abre a issue no GitHub com as labels `vertical:<nome>` e `status:planned`.
+4. Execute [/ticket:new](./ticket-new.md) para cada task do plano de implementação: cria o `.md` em `wiki/tasks/` com `status: planned` e abre a issue no GitHub com as labels `vertical:<nome>` e `status:planned`. Se a task materializa regras/requisitos de `wiki/business/`, preencha `implements: [BR-..., REQ-...]`.
 5. Opcional: salvar a transcrição resumida do grill como `raw/AAAA-MM-DD-grill-<slug>.md` (as respostas do usuário são fonte primária).
 6. Append em `wiki/log.md`: `## [AAAA-MM-DD] grill | <tema>` listando os arquivos tocados e tickets criados.
 7. Sugerir próximo passo: `/implement vertical:<nome>` (ou `/implement <task>`), `/grill-design`, `/rws:lint`.

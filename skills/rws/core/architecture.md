@@ -25,10 +25,12 @@ A wiki é um **artefato que se acumula (compounding)**.
 - Duas páginas especiais: `index.md` (catálogo por conteúdo) e `log.md` (cronologia append-only). Ver [index-and-log.md](./index-and-log.md).
 - Ligações com `[[wikilinks]]` (compatível com Obsidian).
 - O usuário lê; o agente escreve.
+- **Camada de negócio** — `wiki/business/`: regras, requisitos, processos, atores e políticas em linguagem de stakeholder (sem código), legível por pessoas não técnicas. Fica **a montante** da parte técnica: decisões, specs e tasks derivam dela (tasks citam `implements: [BR-###, REQ-###]`). Entrada para stakeholders: `wiki/business/catalogo.md`. Alimentada por `/grill-business`; linguagem governada por `schema/business-rules.md`.
 
 ### 3. Schema — `schema/`
 - `schema/schema.md`: estrutura de pastas, tipos de página, frontmatter obrigatório, workflows do projeto.
 - `schema/design-system.md` (opcional): regras visuais gerado por `/grill-design`.
+- `schema/business-rules.md` (opcional): linguagem proibida em `wiki/business/`, formato de IDs (BR/REQ), deprecação.
 - Outras regras específicas (`schema/<regra>.md`).
 - É o que torna o agente um **mantenedor disciplinado** em vez de um chatbot genérico.
 - Os arquivos de agente (`CLAUDE.md`, `AGENTS.md`, `GEMINI.md`) do projeto apontam para `schema/schema.md`.
@@ -45,6 +47,14 @@ A wiki é um **artefato que se acumula (compounding)**.
 │   ├── index.md
 │   ├── log.md
 │   ├── overview.md
+│   ├── business/              # camada de negócio (sem código)
+│   │   ├── catalogo.md        # porta de entrada para stakeholders
+│   │   ├── glossario.md
+│   │   ├── actors/
+│   │   ├── processes/
+│   │   ├── rules/             # br-012-<slug>.md
+│   │   ├── requirements/      # req-004-<slug>.md
+│   │   └── policies/
 │   ├── entities/
 │   ├── concepts/
 │   ├── decisions/
@@ -52,6 +62,7 @@ A wiki é um **artefato que se acumula (compounding)**.
 │   └── syntheses/
 ├── schema/
 │   ├── schema.md
+│   ├── business-rules.md      # linguagem proibida, IDs, deprecação
 │   └── design-system.md
 └── CLAUDE.md | AGENTS.md | GEMINI.md   → "Leia schema/schema.md e siga a skill RWS"
 ```
@@ -66,6 +77,8 @@ flowchart LR
     R -- "ingest" --> W["wiki/"]
     S["schema/"] -- "governa" --> W
     W -- "query" --> U
+    U -- "grill-business" --> WB["wiki/business/"]
+    WB -- "embasa" --> W
     U -- "grill / grill-design" --> W
     U -- "aprova regras" --> S
 ```
@@ -78,3 +91,4 @@ flowchart LR
 | **Query** | index → páginas → raw → resposta com citações → (opcional) vira página |
 | **Lint** | Contradições, páginas órfãs, claims obsoletos, conceitos sem página, links quebrados |
 | **Grill** | Entrevista → aprovação → wiki + schema |
+| **Grill-business** | Entrevista sobre o negócio → aprovação → `wiki/business/` (regras, requisitos, processos; sem tickets) |

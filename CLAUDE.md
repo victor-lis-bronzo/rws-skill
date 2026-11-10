@@ -18,6 +18,7 @@ Invocação: `/rws <comando>` (ex.: `/rws grill`); no plugin do Claude Code, `/r
 | `/setup-green-space` | `skills/rws/references/setup-green-space.md` |
 | `/grill`, `/grill-me` | `skills/rws/references/grill.md` |
 | `/grill-design` | `skills/rws/references/grill-design.md` |
+| `/grill-business` | `skills/rws/references/grill-business.md` |
 | `/ticket:new` · `:add` | `skills/rws/references/ticket-<ação>.md` |
 | `/ticket:tdd` · `:code` · `:review` | `skills/rws/references/ticket-<ação>.md` |
 | `/implement` | `skills/rws/references/implement.md` |
@@ -27,6 +28,6 @@ Invocação: `/rws <comando>` (ex.: `/rws grill`); no plugin do Claude Code, `/r
 | `/rws:lint` | `node skills/rws/bin/lint-rws.js <raiz-do-projeto>` + `skills/rws/core/lifecycle.md#lint` |
 
 ## Dicas específicas do Claude Code
-- Use `AskUserQuestion` (quando disponível) nas perguntas de `/grill` e `/grill-design`, sempre com a opção recomendada primeiro.
+- Use `AskUserQuestion` (quando disponível) nas perguntas de `/grill`, `/grill-design` e `/grill-business`, sempre com a opção recomendada primeiro.
 - Use subagentes (`Task`) para varrer módulos em paralelo no `/setup-brown-space` de repositórios grandes.
 - Para instalar como plugin: `claude plugin marketplace add <url>` e `claude plugin install rws@rws-skill`. Veja o [README](./README.md#install).

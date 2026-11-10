@@ -5,9 +5,10 @@ description: >-
   mantida por LLM, baseada no padrão "LLM Wiki" de Andrej Karpathy. Use SEMPRE que o
   projeto contiver as pastas raw/, wiki/ ou schema/, ou quando o usuário pedir para
   auditar uma codebase, registrar conhecimento, planejar features (grill), planejar
-  UI/UX (grill-design) ou executar comandos no formato /<escopo>:<ação>
+  UI/UX (grill-design), desenvolver regras de negócio/requisitos sem falar de código
+  (grill-business) ou executar comandos no formato /<escopo>:<ação>
   (raw-source, wiki, schema × add, remove, increment).
-argument-hint: "<comando> [args], ex.: grill | grill-design | ticket:new | wiki:add | implement | rws:lint"
+argument-hint: "<comando> [args], ex.: grill | grill-design | grill-business | ticket:new | wiki:add | implement | rws:lint"
 ---
 
 # RWS — Raw Sources, Wiki & Schema
@@ -20,7 +21,7 @@ argument-hint: "<comando> [args], ex.: grill | grill-design | ticket:new | wiki:
 | Camada | Pasta (no projeto do usuário) | Dono | Regra de ouro |
 |---|---|---|---|
 | **Raw Sources** | `raw/` | Usuário | **Imutável.** O agente lê e cita, nunca edita. |
-| **Wiki** | `wiki/` | Agente | O agente escreve, conecta e mantém tudo consistente. |
+| **Wiki** | `wiki/` | Agente | O agente escreve, conecta e mantém tudo consistente. `wiki/business/` guarda regras e requisitos em linguagem de negócio (sem código). |
 | **Schema** | `schema/` | Usuário + Agente | Convenções e workflows. Co-evolui com aprovação do usuário. |
 
 Detalhes completos: [core/architecture.md](./core/architecture.md).
@@ -49,6 +50,7 @@ Gramática: `/<escopo>:<ação>` — escopos `raw-source | wiki | schema | ticke
 | `/setup-green-space` | [setup-green-space](./references/setup-green-space.md) |
 | `/grill` (`/grill-me`) | [grill](./references/grill.md) |
 | `/grill-design` | [grill-design](./references/grill-design.md) |
+| `/grill-business` | [grill-business](./references/grill-business.md) — regras de negócio e requisitos, sem tickets |
 | `/ticket:new` · `:add` | [new](./references/ticket-new.md) · [add](./references/ticket-add.md) |
 | `/ticket:tdd` · `:code` · `:review` | [tdd](./references/ticket-tdd.md) · [code](./references/ticket-code.md) · [review](./references/ticket-review.md) |
 | `/implement` | [implement](./references/implement.md) — orquestrador de implementação / roadmap |
@@ -65,7 +67,7 @@ Gramática: `/<escopo>:<ação>` — escopos `raw-source | wiki | schema | ticke
 - [core/index-and-log.md](./core/index-and-log.md) — formato de `index.md` e `log.md`
 - [core/lifecycle.md](./core/lifecycle.md) — Ingest, Query, Lint, Compounding
 - [core/ui-patterns-catalog.md](./core/ui-patterns-catalog.md) — patterns de UI × apps de referência
-- [templates/](./templates/) — modelos de página
+- [templates/](./templates/) — modelos de página (camada de negócio: [templates/wiki/business/](./templates/wiki/business/) + [templates/schema/business-rules.md](./templates/schema/business-rules.md))
 
 ## 5. Proibições
 

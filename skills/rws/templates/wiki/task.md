@@ -6,6 +6,7 @@ vertical: "<vertical>"   # ex: billing, auth, catalog, ui
 priority: medium         # high | medium | low
 depends_on: []           # [ "[[slug-da-task-anterior]]" ] para ordenação de roadmap
 github_issue: null       # preenchido automaticamente ao sincronizar via gh CLI (ex: 42)
+implements: []           # opcional: IDs das regras/requisitos de negócio implementados (ex: [BR-012, REQ-004])
 sources: []              # raw/ ou wiki/decisions/ que embasam esta task
 related: []              # [[entidade]], [[conceito]], [[decisao]]
 created: AAAA-MM-DD
@@ -15,7 +16,7 @@ updated: AAAA-MM-DD
 # <Título da Task>
 
 ## Contexto e Objetivo
-<Resumo do que precisa ser feito e por quê. Link para as decisões ou conceitos da wiki que originaram a demanda.>
+<Resumo do que precisa ser feito e por quê. Link para as decisões ou conceitos da wiki que originaram a demanda. Se a task implementa regras de negócio, linke-as aqui (ex.: [[br-012-<slug>]]) e liste os IDs em `implements`.>
 
 ## Critérios de Aceite
 - [ ] Cenário 1: <condição e resultado esperado>
