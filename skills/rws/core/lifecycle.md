@@ -29,13 +29,16 @@ Disparado por `/rws:lint` ou periodicamente (sugerir a cada ~10 ingestões).
 
 1. Rodar `node <caminho-da-skill>/bin/lint-rws.js <raiz-do-projeto>` (checagens mecânicas):
    - links quebrados, páginas órfãs, páginas fora do index, entradas do index sem arquivo,
-   - frontmatter ausente/incompleto, cabeçalhos do log fora do padrão, sources apontando para raw inexistente.
+   - frontmatter ausente/incompleto, cabeçalhos do log fora do padrão, sources apontando para raw inexistente,
+   - camada de negócio — **ERRO**: ID `BR`/`REQ` duplicado, `business-rule` sem `sources`, `id` diferente do prefixo do arquivo;
+     **AVISO**: `requirement` sem `rules`, `business-rule` ativa não referenciada por nenhum requisito/processo, regra sem `## Exemplos`.
 2. Checagens semânticas (agente):
    - contradições entre páginas;
    - claims superados por fontes mais novas;
    - conceitos mencionados sem página própria → seção *Lacunas* do index;
    - cross-references faltando;
-   - perguntas novas que valeria investigar / fontes que valeria buscar.
+   - perguntas novas que valeria investigar / fontes que valeria buscar;
+   - camada de negócio: regras contraditórias entre si, termos fora do `glossario.md`, jargão técnico em `wiki/business/` (ver `schema/business-rules.md`).
 3. Apresentar relatório ao usuário, corrigir com `/wiki:increment` / `/wiki:remove` após aprovação.
 4. Append `lint` em `log.md`.
 
@@ -44,6 +47,7 @@ Disparado por `/rws:lint` ou periodicamente (sugerir a cada ~10 ingestões).
 O valor da RWS cresce porque **nada se perde no histórico do chat**:
 - Decisões de `/grill` → `wiki/decisions/`.
 - Specs de `/grill-design` → `wiki/ui-specs/`.
+- Regras e requisitos de `/grill-business` → `wiki/business/`.
 - Respostas valiosas → `wiki/syntheses/`.
 - Regras aprendidas → `schema/`.
 

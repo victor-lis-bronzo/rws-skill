@@ -13,7 +13,7 @@ Em dúvida sobre qual procedimento usar, consulte [skills/rws/core/agent-router.
 1. `raw/` é imutável — leia e cite, nunca edite.
 2. `wiki/` é sua responsabilidade — toda escrita atualiza `wiki/index.md` e adiciona entrada em `wiki/log.md`.
 3. `schema/` só muda com aprovação explícita do usuário.
-4. Em `/grill` e `/grill-design`: uma pergunta por vez, sempre com recomendação; nada é gravado sem aprovação explícita.
+4. Em `/grill`, `/grill-design` e `/grill-business`: uma pergunta por vez, sempre com recomendação; nada é gravado sem aprovação explícita.
 
 ## Comandos
 Os comandos seguem `/<escopo>:<ação>`. Como o Codex não registra slash commands customizados
@@ -27,6 +27,7 @@ como invocação e siga o arquivo correspondente:
 | `setup-green-space` | `skills/rws/references/setup-green-space.md` |
 | `grill` / `grill-me` | `skills/rws/references/grill.md` |
 | `grill-design` | `skills/rws/references/grill-design.md` |
+| `grill-business` | `skills/rws/references/grill-business.md` |
 | `ticket:{new,add,tdd,code,review}` | `skills/rws/references/ticket-<ação>.md` |
 | `implement` | `skills/rws/references/implement.md` |
 | `raw-source:{add,remove,increment}` | `skills/rws/references/raw-source-<ação>.md` |

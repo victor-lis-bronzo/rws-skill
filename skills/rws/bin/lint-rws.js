@@ -18,6 +18,16 @@
  *   AVISO   log fora de ordem cronológica
  *   AVISO   raw source não referenciada por nenhuma página da wiki
  *
+ * Camada de negócio (wiki/business/):
+ *   ERRO    business-rule/requirement sem "id" ou com id ≠ prefixo do arquivo (br-012-x.md ↔ BR-012)
+ *   ERRO    id duplicado entre business-rule/requirement
+ *   ERRO    business-rule sem "sources"
+ *   ERRO    business-rule sem "rule_type" / rule_type fora do conjunto permitido
+ *   AVISO   requirement com "rules" vazio
+ *   AVISO   business-rule active não linkada por nenhum requirement ou process
+ *   AVISO   business-rule sem "## Exemplos" / requirement sem "## Critérios de aceite"
+ *   AVISO   task com "implements" apontando para id inexistente
+ *
  * Sem dependências. Node >= 18. Sai com código 1 se houver erros.
  */
 'use strict';
@@ -31,7 +41,9 @@ const root = path.resolve(args.find((a) => !a.startsWith('--')) || process.cwd()
 
 const SPECIAL = new Set(['index', 'log']);
 const EXEMPT_ORPHAN = new Set(['overview']);
-const LOG_HEADER = /^## \[(\d{4}-\d{2}-\d{2})\] [a-z][a-z0-9:-]* \| .+$/;
+const LOG_HEADER = /^## \[(\d{4}-\d{2}-\d{2})\] [a-z][a-z0-9:-]* \| .+$/; // aceita grill-business
+const RULE_TYPES = new Set(['restricao', 'calculo', 'derivacao', 'habilitacao', 'inferencia']);
+const BUSINESS_ID = { 'business-rule': 'BR', requirement: 'REQ' };
 
 const issues = [];
 const add = (level, file, message) =>
@@ -126,6 +138,16 @@ function extractLinks(text) {
   return links;
 }
 
+function asList(v) {
+  return (Array.isArray(v) ? v : v ? [v] : []).filter((x) => x && x.trim());
+}
+
+function fmLinkText(fm) {
+  // campos de frontmatter que carregam wikilinks
+  if (!fm) return '';
+  return ['related', 'rules', 'superseded_by'].flatMap((k) => asList(fm[k])).join(' ');
+}
+
 // ---------- estrutura ----------
 const wikiDir = path.join(root, 'wiki');
 const rawDir = path.join(root, 'raw');
@@ -179,7 +201,7 @@ const indexLinks = new Set();
 
 for (const [slug, page] of pages) {
   const body = stripCode(page.text);
-  const fmLinks = page.fm && Array.isArray(page.fm.related) ? page.fm.related.join(' ') : '';
+  const fmLinks = fmLinkText(page.fm);
   const links = extractLinks(body + '\n' + fmLinks);
   for (const target of links) {
     if (!pages.has(target)) {
@@ -196,6 +218,55 @@ for (const [slug, page] of pages) {
   if (fs.existsSync(indexPath) && !indexLinks.has(slug)) add('error', page.file, `Página ausente do index.md: [[${slug}]]`);
   if (!EXEMPT_ORPHAN.has(slug) && page.fm?.type !== 'task' && inbound.get(slug).size === 0)
     add('warning', page.file, `Página órfã: nenhuma outra página linka [[${slug}]]`);
+}
+
+// ---------- camada de negócio ----------
+const businessIds = new Map(); // ID -> slug
+const linkedFromReqOrProcess = new Set();
+
+for (const [slug, page] of pages) {
+  const type = page.fm?.type;
+  if (type === 'requirement' || type === 'process') {
+    for (const target of extractLinks(stripCode(page.text) + '\n' + fmLinkText(page.fm))) linkedFromReqOrProcess.add(target);
+  }
+  const prefix = BUSINESS_ID[type];
+  if (!prefix) continue;
+  const id = String(page.fm.id || '').trim();
+  const fileMatch = slug.match(/^(br|req)-(\d{3,})-/i);
+  const expected = fileMatch && fileMatch[1].toUpperCase() === prefix ? `${prefix}-${fileMatch[2]}` : null;
+  if (!id) add('error', page.file, `${type} sem "id" (esperado ${prefix}-###)`);
+  else if (!new RegExp(`^${prefix}-\\d{3,}$`).test(id))
+    add('error', page.file, `id "${id}" fora do padrão ${prefix}-### (3+ dígitos, maiúsculo)`);
+  if (!expected) add('error', page.file, `Nome do arquivo deve começar com ${prefix.toLowerCase()}-###- (ex.: ${prefix.toLowerCase()}-001-<slug>.md)`);
+  else if (id && id !== expected) add('error', page.file, `id "${id}" não corresponde ao prefixo do arquivo (esperado ${expected})`);
+  if (id) {
+    if (businessIds.has(id)) add('error', page.file, `id duplicado "${id}" (também em [[${businessIds.get(id)}]])`);
+    else businessIds.set(id, slug);
+  }
+}
+
+for (const [slug, page] of pages) {
+  const fm = page.fm;
+  if (!fm) continue;
+  const body = stripCode(page.text);
+  if (fm.type === 'business-rule') {
+    if (!asList(fm.sources).length) add('error', page.file, 'business-rule sem "sources" (toda regra precisa de fonte em raw/)');
+    if (!fm.rule_type) add('error', page.file, `business-rule sem "rule_type" (${[...RULE_TYPES].join(' | ')})`);
+    if (!/^##\s+Exemplos\s*$/m.test(body)) add('warning', page.file, 'business-rule sem seção "## Exemplos"');
+    if (fm.status === 'active' && !linkedFromReqOrProcess.has(slug))
+      add('warning', page.file, `Regra active não linkada por nenhum requirement ou process: [[${slug}]]`);
+  }
+  if (fm.rule_type && !RULE_TYPES.has(fm.rule_type))
+    add('error', page.file, `rule_type "${fm.rule_type}" inválido (${[...RULE_TYPES].join(' | ')})`);
+  if (fm.type === 'requirement') {
+    if (!asList(fm.rules).length) add('warning', page.file, 'requirement com "rules" vazio');
+    if (!/^##\s+Crit[ée]rios de aceite\s*$/im.test(body)) add('warning', page.file, 'requirement sem seção "## Critérios de aceite"');
+  }
+  if (fm.type === 'task') {
+    for (const ref of asList(fm.implements)) {
+      if (!businessIds.has(ref.trim().toUpperCase())) add('warning', page.file, `implements: "${ref}" não existe entre as regras/requisitos de negócio`);
+    }
+  }
 }
 
 // ---------- log ----------

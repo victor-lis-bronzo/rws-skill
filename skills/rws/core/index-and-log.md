@@ -16,6 +16,12 @@ O agente **lê o index primeiro** em toda Query e **atualiza o index em toda esc
 ## Visão geral
 - [[overview]] — O que é o projeto, para quem e como está organizado.
 
+## Negócio
+- [[catalogo]] — Porta de entrada para stakeholders: processos, regras e requisitos.
+- [[glossario]] — Termos do negócio.
+- [[br-012-desconto-maximo]] — BR-012 · Desconto não ultrapassa 15% do pedido. · status: active
+- [[req-004-aplicar-desconto]] — REQ-004 · Vendedor aplica desconto no pedido. · priority: must
+
 ## Entidades
 - [[api-gateway]] — Ponto de entrada HTTP; autenticação JWT. · fontes: 2
 - [[tabela-pedidos]] — Schema e ciclo de vida de pedidos. · fontes: 1
@@ -51,7 +57,7 @@ Cabeçalho padronizado para ser parseável com ferramentas simples:
 ## [AAAA-MM-DD] <operação> | <título>
 ```
 
-Operações válidas: `setup`, `ingest`, `query`, `lint`, `grill`, `grill-design`,
+Operações válidas: `setup`, `ingest`, `query`, `lint`, `grill`, `grill-design`, `grill-business`,
 `ticket:new|add|tdd|code|review`, `implement`,
 `raw-source:add|remove|increment`, `wiki:add|remove|increment`, `schema:add|remove|increment`.
 

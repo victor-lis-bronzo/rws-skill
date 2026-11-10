@@ -6,6 +6,7 @@ vertical: billing
 priority: high
 depends_on: []
 github_issue: 1
+implements: [BR-001, BR-002, REQ-001]
 sources:
   - wiki/decisions/2026-10-16-adotar-stripe.md
 related: ["[[cobranca-recorrente]]", "[[2026-10-16-adotar-stripe]]", "[[assinatura]]"]

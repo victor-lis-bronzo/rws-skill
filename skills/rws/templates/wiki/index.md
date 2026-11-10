@@ -11,6 +11,14 @@ updated: AAAA-MM-DD
 
 ## Visão geral
 
+## Negócio
+<!-- Camada de negócio (wiki/business/). Linguagem 100% de negócio. Exemplos:
+- [[catalogo]] — porta de entrada do negócio: objetivo, escopo, atores, processos, regras e requisitos
+- [[glossario]] — termos oficiais do negócio
+- [[br-001-<slug>]] — <regra em uma frase> · BR-001 · status: active
+- [[req-001-<slug>]] — <necessidade em uma frase> · REQ-001 · priority: must · status: active
+-->
+
 ## Entidades
 
 ## Conceitos

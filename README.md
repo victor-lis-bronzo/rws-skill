@@ -95,6 +95,7 @@ Grammar: `/<scope>:<action>` with scopes `raw-source · wiki · schema · ticket
 | `/setup-green-space` | Defines and initializes a clean RWS architecture in a new project |
 | `/grill` · `/grill-me` | Socratic brainstorm until it understands what you want → writes wiki, schema and tasks |
 | `/grill-design` | UI/UX brainstorm with named patterns and reference apps → `wiki/ui-specs/` + UI tasks |
+| `/grill-business` | Business-only interview (no code, no tickets) → rules, requirements and processes in `wiki/business/`, readable by non-technical stakeholders |
 | `/ticket:new` · `:add` | Create a wiki task + GitHub issue, or export an existing task to an issue |
 | `/ticket:tdd` · `:code` · `:review` | TDD cycle: failing tests, green code, lint/conventional commit/closure |
 | `/implement` | Implementation orchestrator driven by ticket, vertical or autonomous roadmap analysis |
@@ -109,6 +110,7 @@ Grammar: `/<scope>:<action>` with scopes `raw-source · wiki · schema · ticket
 - **Existing project:** `/setup-brown-space` to audit the codebase and seed the base.
 - **New material arrived:** `/raw-source:add`
 - **About to design screens:** `/grill-design`
+- **Business rules unclear:** `/grill-business` before `/grill`
 
 ## Repository layout
 
